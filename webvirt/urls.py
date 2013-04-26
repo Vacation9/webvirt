@@ -4,6 +4,6 @@
 
 class Index:
     def GET(self):
-        return "WebVirt"
+        return "<h1>WebVirt</h1>"
 
 classes = globals()

@@ -1,0 +1,5 @@
+"""
+WebVirt Configuration
+"""
+
+name = "WebVirt"

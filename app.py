@@ -6,5 +6,5 @@ urls = (
         )
 
 if __name__ == '__main__':
-    app = web.application(urls, webvirt.handlers)
+    app = web.application(urls, webvirt.handlers.classes)
     app.run()

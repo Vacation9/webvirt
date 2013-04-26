@@ -1,6 +1,10 @@
 import web
-#from webvirt import handlers
+import webvirt
 
 urls = (
     '/', 'handlers.Index'
         )
+
+if __name__ == '__main__':
+    app = web.application(urls, webvirt.handlers)
+    app.run()

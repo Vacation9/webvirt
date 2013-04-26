@@ -1,9 +1,9 @@
 """
-    WebVirt URL Handers
+    WebVirt URL Handlers
 """
 
 class Index:
     def GET(self):
-        return "Index"
+        return "WebVirt"
 
 classes = globals()

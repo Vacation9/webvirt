@@ -1,2 +1,2 @@
-__all__ = ['handlers']
-import handlers
+__all__ = ['urls']
+import urls

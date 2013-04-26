@@ -2,7 +2,7 @@ import web
 import webvirt
 
 urls = (
-    '/', 'handlers.Index'
+    '/', 'Index'
         )
 
 if __name__ == '__main__':

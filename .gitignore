@@ -1,2 +1,4 @@
 /update-waitaha.sh
 /restartwebpy.sh
+*.pyc
+__pycache__

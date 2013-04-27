@@ -42,7 +42,7 @@ class Login:
         templates = web.template.render('webvirt/templates/')
         data = web.input()
         if "failed" in data:
-            return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
+            return templates.login('<span><p style="color:#FF0000">Failed Login</p></span>')
         else:
             return templates.login('')
 

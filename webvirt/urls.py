@@ -14,6 +14,20 @@ class Index:
     def GET(self):
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
+        content = '<div id="stats"></div>\n'
+        content += '<script type="text/javascript">\n'
+        content += 'populate_table("stats");\n'
+        content += '</script>'
+	numVMs = float(len(conn.listAllDomains(0)))
+	perRunningVMs = 100 * (float(len(conn.listAllDomains(16)))) / numVMs
+	perSuspendVMs = 100 * (float(len(conn.listAllDomains(32)))) / numVMs
+	perShutoffVMs = 100 * (float(len(conn.listAllDomains(64)))) / numVMs
+	content += '<h3>VM State Statistics</h3><br />\n'
+	content += '<div class="progress">\n'
+	content += '  <div class="bar bar-success" style="width: ' + perRunningVMs + '%;"></div>\n'
+	content += '  <div class="bar bar-warning" style="width: ' + perSuspendVMs + '%;"></div>\n'
+	content += '  <div class="bar bar-failure" style="width: ' + perShutoffVMs + '%;"></div>\n'
+	content += '</div>\n'
         data = ""
         content = templates.indextable()
         for dom in conn.listAllDomains(0):

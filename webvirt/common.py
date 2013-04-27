@@ -41,6 +41,6 @@ def allinfo(doms):
 
 def pct_from_mem(memstats):
     free = memstats['free'] / memstats['total']
-    free = round(used * 100)
+    free = round(free * 100)
     used = 100 - free
     return (free, used)

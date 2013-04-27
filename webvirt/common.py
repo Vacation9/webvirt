@@ -10,6 +10,7 @@ def parse_post(data):
     for item in fields:
         key, value = item.split('=')
         ret[key] = value
+    return ret
 
 def getState(state):
     if state == libvirt.VIR_DOMAIN_NOSTATE:

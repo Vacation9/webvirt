@@ -264,7 +264,7 @@ class ListHD:
         files = [x for x in files if x.endswith('.qcow2')]
         sizes = []
         for f in files:
-            for line in run_proc(['qemu-img', 'info', '/var/hackfiles/' + f]):
+            for line in common.run_proc(['qemu-img', 'info', '/var/hackfiles/' + f]):
                 if "virtual size" in line:
                     sizes.append(line.split(' ')[2])
         pack = zip(files, sizes)

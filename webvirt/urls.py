@@ -120,7 +120,7 @@ class Create:
             web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
         )
         form = myform() 
-        if not web.form.validates(): 
+        if not form.validates(): 
             return render.formtest(form)
         else:
             # form.d.boe and form['boe'].value are equivalent ways of

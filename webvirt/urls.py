@@ -48,11 +48,11 @@ class Host:
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
-                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
             elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
-                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
             else:
-                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.index(content, data)
 
 
@@ -84,11 +84,11 @@ class VM:
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
-                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
             elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
-                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
             else:
-                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.vm(content, data, vm)
 
 class Create:
@@ -102,11 +102,11 @@ class Create:
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
-                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
             elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
-                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
             else:
-                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.index(content, data)
 
 class Auth:

@@ -1,7 +1,22 @@
 function populate_table(id) {
-    prnt = document.getElementById(id);
-    table = document.createElement("table");
-    prnt.appendChild(table);
+    table = document.getElementById(id);
+
+    function info_builder(request) {
+        function callback(data) {
+            if(request.readyState == 4) {
+                var info = JSON.parse(request.responseText);
+                tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.innerHTML = info.name;
+                tr.appendChild(td);
+                td = document.createElement('td');
+                td.innerHTML = info.status;
+                tr.appendChild(td);
+                table.appendChild(tr);
+            }
+        }
+        return callback;
+    }
 
     function builder(request) {
         function callback(data) {
@@ -10,11 +25,7 @@ function populate_table(id) {
                 vmlist = list.vms;
                 for(var i = 0; i < vmlist.length; i++) {
                     name = vmlist[i];
-                    tr = document.createElement("tr");
-                    table.appendChild(tr);
-                    td = document.createElement("td");
-                    td.innerHTML = name;
-                    tr.appendChild(td);
+                    makeRequest("ajax/vminfo/" + name, info_builder, 'GET');
                 }
             }
         }

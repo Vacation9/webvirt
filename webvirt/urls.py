@@ -14,11 +14,8 @@ class Index:
     def GET(self):
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
-        content = '<div id="stats"></div>\n'
-        content += '<script type="text/javascript">\n'
-        content += 'populate_table("stats");\n'
-        content += '</script>'
         data = ""
+        content = templates.indextable()
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

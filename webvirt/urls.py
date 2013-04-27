@@ -1,6 +1,7 @@
 """
     WebVirt URL Handlers
 """
+import ajax
 import auth
 import common
 import config
@@ -138,6 +139,8 @@ class Ajax:
         if not authed:
             web.ctx.status = '401 Unauthorized'
             return "{}"
-        return path
+        components = path.split('/')
+        ajax_handler = ajax.AjaxHandler()
+        ajax_handler.add_handler('vminfo', ajax.vminfo)
 
 classes = globals()

@@ -19,6 +19,12 @@ class Domain:
     def resumeVM(self):
         self.dom.resume()
 
+    def get_dict(self):
+        return {
+                "name": self.name,
+                "state": self.state
+                }
+
 class HostServer:
     def __init__(self):
         self.hostname = conn.getHostname()
@@ -42,3 +48,5 @@ class HostServer:
                 )
         self.domains.append(dom)
         return dom
+
+    

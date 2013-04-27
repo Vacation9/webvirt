@@ -8,7 +8,6 @@ class Domain:
         self.name = dom.name()
         self.rawstate = dom.state(0)[0]
         self.state = common.getState(self.rawstate)
-        self.vncport = common.getVNC(dom.XMLDesc())
         self.memmax = dom.info()[1]
         self.memused = dom.info()[2]
         self.mempct = round(100 * (float(self.memused) / float(self.memmax)))

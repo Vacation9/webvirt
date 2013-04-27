@@ -17,7 +17,7 @@ class Index:
         templates = web.template.render('webvirt/templates/')
         content = "This is some random text for testing."
         data = {}
-        domains = conn.liistDefinedDomains()
+        domains = conn.listDefinedDomains()
         for dom in domains:
                 dom = conn.lookupByName(dom)
                 data += "<li>" + dom + '<p style="color:#00FF00"' + common.getState(dom.state(0)[0]) + "</p></li>"

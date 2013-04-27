@@ -200,5 +200,4 @@ class Upload:
              fout.write(x.myfile.file.read()) # writes the uploaded file to the newly created file.
              fout.close() # closes the file, upload complete.
         raise web.seeother('/upload')
-
 classes globals()

@@ -201,5 +201,4 @@ class Upload:
              fout.close() # closes the file, upload complete.
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')
 
-
-classes globals()
+classes  = globals()

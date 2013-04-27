@@ -270,9 +270,9 @@ class ListHD:
                 if "virtual size" in line:
                     sizes.append(line.split(' ')[2])
         pack = zip(files, sizes)
-        contents='<table class="table"><tr><td>Name</td><td>Size</td></tr>'
+        contents='<h2>Available Hard Drives</h2><table class="table"><tr><td><b>Name</b></td><td><b>Size</b></td></tr>'
         for f, size in pack:
-            contents += "<tr><td>%s</td><td>%s</td></tr>" % (f, size)
+            contents += "<tr><td>/var/hackfiles/%s</td><td>%s</td></tr>" % (f, size)
         contents += "</table>"
         data = ""
         for dom in conn.listAllDomains(0):

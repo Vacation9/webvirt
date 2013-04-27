@@ -25,4 +25,4 @@ def verify_auth(redir=None):
             return False
         web.seeother(redir)
     else:
-        True
+        return True

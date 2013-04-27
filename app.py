@@ -9,7 +9,8 @@ urls = (
     '/login', 'Login',
     '/console', 'Console',
     '/host', 'Host',
-    '/vm', 'VM'
+    '/vm', 'VM',
+    '/ajax', 'Ajax'
         )
 
 if __name__ == '__main__':

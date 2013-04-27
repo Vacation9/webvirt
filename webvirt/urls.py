@@ -114,4 +114,12 @@ class Console:
         templates = web.template.render('webvirt/templates/')
         return templates.console()
 
+class Ajax:
+    def GET(self):
+        authed = auth.verify_auth()
+        if not authed:
+            web.ctx.status = '401 Unauthorized'
+            return "{}"
+        return web.ctx.path
+
 classes = globals()

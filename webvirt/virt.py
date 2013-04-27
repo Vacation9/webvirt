@@ -18,7 +18,7 @@ class Domain:
         if self.rawstate != libvirt.VIR_DOMAIN_SHUTOFF:
             self.dom.destroy()
     def suspendVM(self):
-        if self.rawstate != libvirt.VIR_DOMAIN_PMSUSPENDED:
+        if self.rawstate == libvirt.VIR_DOMAIN_RUNNING:
             self.dom.suspend()
     def resumeVM(self):
         if self.rawstate != libvirt.VIR_DOMAIN_RUNNING:

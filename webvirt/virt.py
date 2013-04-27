@@ -8,25 +8,36 @@ class Domain:
         self.name = dom.name()
         self.rawstate = dom.state(0)[0]
         self.state = common.getState(self.rawstate)
+        self.memmax = dom.info()[1]
+        self.memused = dom.info()[2]
+        self.mempct = round(100 * (float(self.memused) / self.memmax))
+
     def startVM(self):
         if self.rawstate != libvirt.VIR_DOMAIN_RUNNING:
             self.dom.create()
+
     def stopVM(self):
         if self.rawstate != libvirt.VIR_DOMAIN_SHUTOFF:
             self.dom.shutdown()
+
     def destroyVM(self):
         if self.rawstate != libvirt.VIR_DOMAIN_SHUTOFF:
             self.dom.destroy()
+
     def suspendVM(self):
         if self.rawstate == libvirt.VIR_DOMAIN_RUNNING:
             self.dom.suspend()
+
     def resumeVM(self):
         self.dom.resume()
 
     def get_dict(self):
         return {
                 "name": self.name,
-                "state": self.state
+                "state": self.state,
+                "memmax": self.memmax,
+                "memused": self.memused,
+                "mempct": self.mempct
                 }
 
 class HostServer:

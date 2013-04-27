@@ -3,8 +3,11 @@ function populate_table(id) {
     table = document.createElement("table");
     prnt.appendChild(table);
 
-    function callback(data) {
-        console.log(this.request.responseText);
+    function builder(request) {
+        function callback(data) {
+            console.log(request.responseText);
+        }
+        return callback;
     }
-    makeRequest("ajax/listvms", callback, 'GET');
+    makeRequest("ajax/listvms", builder, 'GET');
 }

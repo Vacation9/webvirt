@@ -1,6 +1,6 @@
-function makeRequest(url, callback, method) {
+function makeRequest(url, callback_builder, method) {
     var request = new XMLHttpRequest();
-    callback.request = request;
+    callback = callback_builder(request);
     request.onreadystatechange = callback;
     request.open(method, url, true);
     request.send(null);

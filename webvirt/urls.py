@@ -273,7 +273,7 @@ class ListHD:
         contents='<table class="table"><tr><td>Name</td><td>Size</td></tr>'
         for f, size in pack:
             contents += "<tr><td>%s</td><td>%s</td></tr>" % (f, size)
-        contends += "</table>"
+        contents += "</table>"
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

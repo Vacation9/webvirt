@@ -125,7 +125,8 @@ class Create:
         else:
             # form.d.boe and form['boe'].value are equivalent ways of
             # extracting the validated arguments from the form.
-            virt.HostServer.createDomain(form['name'].value, form['mem'].value, form['cpu'].value, form['hd'].value, form['iso'].value, form['pts'].value)
+            hs = virt.HostServer()
+            hs.createDomain(form['name'].value, form['mem'].value, form['cpu'].value, form['hd'].value, form['iso'].value, form['pts'].value)
 
 class Auth:
     def GET(self):

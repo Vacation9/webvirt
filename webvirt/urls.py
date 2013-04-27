@@ -133,7 +133,7 @@ class List:
     def GET(self):
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         data = []
-        for dom in conn.listDefinedDomains():
+        for dom in conn.listAllDomains(0):
             data[dom] = Domain(dom)
         return web.template.render('webvirt/templates/').index(data)
 

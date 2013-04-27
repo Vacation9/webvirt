@@ -21,7 +21,7 @@ class Auth:
         return str(data)
 class List:
     def GET(self):
-        return conn.listDefinedDomains(0)
+        return conn.listDefinedDomains()
 
 
 classes = globals()

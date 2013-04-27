@@ -9,6 +9,7 @@ import libvirt
 from connection import conn
 import virt
 import web
+from web import form
 
 class Index:
     def GET(self):
@@ -105,9 +106,17 @@ class Create:
         if cookies.get("session") == None:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
-        content = ""
+        myform = form.Form( 
+            form.Textbox("name",form.notnull)
+            form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit'))
+            form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit'))
+            form.Textbox("hd",form.notnull)
+            form.Textbox("iso",form.notnull)
+            form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit'))
+
+        form = myform()
         data = ""
-        for dom in conn.listAllDomains(0):
+        fr dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
@@ -116,6 +125,22 @@ class Create:
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.create(content, data,form)
+    def POST(self): 
+         myform = form.Form( 
+             form.Textbox("name",form.notnull)
+             form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit'))
+             form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit'))
+             form.Textbox("hd",form.notnull)
+             form.Textbox("iso",form.notnull)
+             form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit'))
+ 
+            form = myform() 
+        if not form.validates(): 
+            return render.formtest(form)
+        else:
+            # form.d.boe and form['boe'].value are equivalent ways of
+            # extracting the validated arguments from the form.
+            return "Well fuck me with a swiffer wet jet! name: %s, mem: %d, cpu: %d, hd: %s, iso: %s, pts: %d" % (form['name'].value, form['mem'],form['cpu'],form['hd'],form['iso'],form['pts'])
 
 class Auth:
     def GET(self):

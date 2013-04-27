@@ -2,6 +2,7 @@
     WebVirt URL Handlers
 """
 import config
+from conn import conn
 
 import web
 
@@ -18,5 +19,9 @@ class Auth:
     def POST(self):
         data = web.data()
         return str(data)
+class List:
+    def GET(self):
+        return conn.listDefinedDomains(0)
+
 
 classes = globals()

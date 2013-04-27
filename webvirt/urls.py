@@ -28,9 +28,13 @@ class Auth:
             auth.authuser(username, password)
 
 class Login:
-    def GET(self):
+    def GET(self,failed):
         templates = web.template.render('webvirt/templates/')
-        return templates.login()
+        if(failed = 1):
+		return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
+	else:
+		return templates.login()
+
 
 class List:
     def GET(self):

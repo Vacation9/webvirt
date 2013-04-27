@@ -59,6 +59,7 @@ class VM:
         templates = web.template.render('webvirt/templates/')
         data2 = web.input()
         vm = data2['vm']
+	domObj = conn.lookupByName(vm)
         content = ""
         data = ""
         for dom in conn.listAllDomains(0):
@@ -70,7 +71,16 @@ class VM:
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
         return templates.vm(content, data, vm)
-
+    def startVM(domain):
+        domain.create()
+    def stopVM(domain):
+        domain.shutdown()
+    def destroyVM(domain):
+        domain.destroy()
+    def suspendVM(domain):
+        domain.suspend()
+    def resumeVM(domain):
+        domain.resume()
 
 class Create:
     def GET(self):

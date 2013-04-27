@@ -7,9 +7,8 @@ import web
 
 class Index:
     def GET(self):
-        import os
         templates = web.template.render('webvirt/templates/')
-        return os.listdir("webvirt/templates")
+        return str(dir(templates))
 
 class Auth:
     def GET(self):

@@ -1,0 +1,7 @@
+#!/bin/bash
+user=`echo $USER | cut -c 5-`
+set -e
+git pull -r
+cd ~2014jforcier/hackathon
+git pull $user master
+./update-waitaha.sh

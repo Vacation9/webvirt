@@ -122,7 +122,7 @@ class Create:
         )
         form = myform()
         data = ""
-        fr dom in conn.listAllDomains(0):
+        for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"

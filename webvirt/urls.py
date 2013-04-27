@@ -206,38 +206,38 @@ class Upload:
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')
 
 class HD:
-   def GET(self):
-           cookies = web.cookies()
-           if cookies.get("session") == None:
+    def GET(self):
+       cookies = web.cookies()
+       if cookies.get("session") == None:
            web.seeother("http://www.tjhsst.edu/hackathon/login")
-           templates = web.template.render('webvirt/templates/')
-           myform = web.form.Form(
+       templates = web.template.render('webvirt/templates/')
+       myform = web.form.Form(
                            web.form.Textbox("name",web.form.notnull,description="Name of Hard Drive: ",align='left'),
                            web.form.Textbox("size",web.form.notnull,description="Size of Hard Drive (GB): ",align='left')
                            )
-           form = myform()
-           data = ""
-           content = "<h2>Create a New Virtual Machine Hard Drive</h2>"
-           for dom in conn.listAllDomains(0):
-                   dom = virt.Domain(dom)
-                   if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
-                           data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
-                   elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
-                           data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
-                   else:
-                           data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
-           return templates.create(content, data,form,web.cookies().get("session"))
+       form = myform()
+       data = ""
+       content = "<h2>Create a New Virtual Machine Hard Drive</h2>"
+       for dom in conn.listAllDomains(0):
+           dom = virt.Domain(dom)
+           if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
+               data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
+           elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+               data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
+           else:
+               data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
+       return templates.create(content, data,form,web.cookies().get("session"))
 
     def POST(self):
-        myform = web.form.Form(
+       myform = web.form.Form(
             web.form.Textbox("name",web.form.notnull,description="Name of Hard Drive: ",align='left'),
             web.form.Textbox("size",web.form.notnull,description="Size of Hard Drive (GB): ",align='left')
-        )
-        form = myform()
-        if not form.validates():
-            return render.formtest(form)
-        else:
-            os.system('qemu-img create' + form['name'] + " " + form['size'] + 'G')
-            web.seeother("http://www.tjhsst.edu/hackathon/")
+       )
+       form = myform()
+       if not form.validates():
+           return render.formtest(form)
+       else:
+           os.system('qemu-img create' + form['name'] + " " + form['size'] + 'G')
+           web.seeother("http://www.tjhsst.edu/hackathon/")
 
 classes  = globals()

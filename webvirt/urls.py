@@ -37,7 +37,7 @@ class Login:
         if "failed" in data:
             return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
         else:
-            return templates.login()
+            return templates.login('')
 
 class List:
     def GET(self):

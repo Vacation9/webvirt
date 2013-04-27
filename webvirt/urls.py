@@ -60,10 +60,10 @@ class VM:
         templates = web.template.render('webvirt/templates/')
         data2 = web.input()
         vm = data2['vm']
-        content = "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=start'' value='Start'>
-        <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=stop'' value='Stop'>
-        <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=destroy'' value='Destroy'>
-        <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=suspend'' value='Suspend'>
+        content = "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=start'' value='Start'>\
+        <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=stop'' value='Stop'>\
+        <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=destroy'' value='Destroy'>\
+        <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=suspend'' value='Suspend'>\
         <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=resume'' value='Resume'>"
         data = ""
         for dom in conn.listAllDomains(0):

@@ -20,8 +20,7 @@ class Auth:
         return "<h1>Incorrect method</h1>"
 
     def POST(self):
-        data = web.data()
-        data = common.parse_post(data)
+        data = web.input()
         try:
             username = data['username']
             password = data['password']
@@ -32,7 +31,7 @@ class Auth:
 class Login:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
-        data = web.data()
+        data = web.input()
         return str(data)
         #data = common.parse_post(data)
         #if "failed" in data:

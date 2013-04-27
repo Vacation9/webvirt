@@ -66,18 +66,18 @@ class VM:
         vm = data2['vm']
 	domObj = virt.Domain(conn.lookupByName(vm))
 	if 'action' in data2.keys():
-	    if data2[action] == 'start':
+	    if data2['action'] == 'start':
 	        domObj.startVM()
-	    elif data2[action] == 'stop':
+	    elif data2['action'] == 'stop':
 	        domObj.stopVM()
-	    elif data2[action] == 'destroy':
+	    elif data2['action'] == 'destroy':
 	        domObj.destroyVM()
-	    elif data2[action] == 'suspend':
+	    elif data2['action'] == 'suspend':
 	        domObj.suspendVM()
-	    elif data2[action] == 'resume':
+	    elif data2['action'] == 'resume':
 	        domObj.resumeVM()
-	    if data2[action] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
-	        content += '<h3>' + vm + ' ' +  action + ('p' if data[2] == 'stop' else '') + 'ed.</h3>'
+	    if data2['action'] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
+	        content += '<h3>' + vm + ' ' +  action + ('p' if data2['action'] == 'stop' else '') + 'ed.</h3>'
         content += "<div class=\"btn-group\">\n<a class=\"btn dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Power Options<span class=\"caret\"></span></a>\n<ul class=\"dropdown-menu\"><li><a href=\"/hackathon/vm?vm=" + vm + "&action=start\">Start</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=stop\">Stop</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=destroy\">Destroy</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=suspend\">Suspend</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=resume\">Resume</a></li></ul></div>"
         data = ""
         for dom in conn.listAllDomains(0):

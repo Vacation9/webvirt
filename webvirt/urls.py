@@ -19,7 +19,7 @@ class Index:
         perRunningVMs = 100 * (float(len(conn.listAllDomains(16)))) / numVMs
         perSuspendVMs = 100 * (float(len(conn.listAllDomains(32)))) / numVMs
         perShutoffVMs = 100 * (float(len(conn.listAllDomains(64)))) / numVMs
-        content += '<h3>VM State Statistics</h3><br />\n'
+        content += '<h2>VM State Statistics</h2><br />\n'
         content += '<div class="progress">\n'
         content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;">Running</div>\n'
         content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;">Suspended</div>\n'

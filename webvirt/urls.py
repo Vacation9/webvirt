@@ -98,7 +98,7 @@ class Create:
             web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Amount of Memory (in KiB): ",align='left'),
             web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Number of Virtual Processors: ",align='left'),
             web.form.Textbox("hd",web.form.notnull,description="Full Path to hard drive file (e.x /var/hackfiles/$name.qcow2): ",align='left'),
-            web.form.Textbox("iso",web.form.notnull,description="Full Path to cdrom iso file (e.x /var/hackfiles/gentoo.iso): ",align='left'),
+            w.form.Textbox("iso",web.form.notnull,description="Fulleb Path to cdrom iso file (e.x /var/hackfiles/gentoo.iso): ",align='left'),
             web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="PTS number for serial console: ",align='left'),
         )
         form = myform()
@@ -183,7 +183,9 @@ class Console:
 
 class Upload:
     def GET(self):
-        content = """<form method="POST" enctype="multipart/form-data" action="">
+        content = """
+        <h2>Upload ISO file to /var/hackfiles/ - for use in creating a new VM</h2>
+        <form method="POST" enctype="multipart/form-data" action="">
         <input type="file" name="myfile" />
         <br/>
         <input type="submit" />
@@ -202,5 +204,40 @@ class Upload:
              fout.write(x.myfile.file.read()) # writes the uploaded file to the newly created file.
              fout.close() # closes the file, upload complete.
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')
+
+class HD:
+   def GET(self):
+           cookies = web.cookies()
+           if cookies.get("session") == None:
+           web.seeother("http://www.tjhsst.edu/hackathon/login")
+           templates = web.template.render('webvirt/templates/')
+           myform = web.form.Form(
+                           web.form.Textbox("name",web.form.notnull,description="Name of Hard Drive: ",align='left'),
+                           web.form.Textbox("size",web.form.notnull,description="Size of Hard Drive (GB): ",align='left')
+                           )
+           form = myform()
+           data = ""
+           content = "<h2>Create a New Virtual Machine Hard Drive</h2>"
+           for dom in conn.listAllDomains(0):
+                   dom = virt.Domain(dom)
+                   if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
+                           data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
+                   elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+                           data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
+                   else:
+                           data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
+           return templates.create(content, data,form,web.cookies().get("session"))
+
+    def POST(self):
+        myform = web.form.Form(
+            web.form.Textbox("name",web.form.notnull,description="Name of Hard Drive: ",align='left'),
+            web.form.Textbox("size",web.form.notnull,description="Size of Hard Drive (GB): ",align='left')
+        )
+        form = myform()
+        if not form.validates():
+            return render.formtest(form)
+        else:
+            os.system('qemu-img create' + form['name'] + " " + form['size'] + 'G')
+            web.seeother("http://www.tjhsst.edu/hackathon/")
 
 classes  = globals()

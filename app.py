@@ -12,6 +12,7 @@ urls = (
     '/vm', 'VM',
     '/create', 'Create',
     '/upload', 'Upload'
+    '/hd','HD'
         )
 
 if __name__ == '__main__':

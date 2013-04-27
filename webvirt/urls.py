@@ -6,7 +6,7 @@ import common
 import config
 import libvirt
 from connection import conn
-from virt import Domain,HostServer
+import virt
 import web
 
 class Index:

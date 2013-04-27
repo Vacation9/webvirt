@@ -46,27 +46,6 @@ class Index:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.index(content, data)
 
-class Host:
-    def GET(self): 
-        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
-        templates = web.template.render('webvirt/templates/')
-        host = Host()
-        data = ""
-        hs = virt.HostServer()
-        freemem, usedmem = common.pct_from_mem(hs.memstats)
-        freemem, usedmed = [str(x) + '%' for x in (freemem, usedmem)]
-        content = templates.host(hs.hostname, hs.hosttype, freemem, usedmem)
-        for dom in conn.listAllDomains(0):
-            dom = virt.Domain(dom)
-            if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
-                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
-            elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
-                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
-            else:
-                data += "<li><a href='/hackathon/vm?vm="+ dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
-        return templates.index(content, data)
-
-
 class VM:
     def GET(self):
         cookies = web.cookies()

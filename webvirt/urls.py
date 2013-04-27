@@ -32,7 +32,7 @@ class Index:
         content += '</div>\n'
         data = ""
         hs = virt.HostServer()
-        freemem, usedmem = common.pct_from_mem(hs.memstats)
+        usedmem, freemem = common.pct_from_mem(hs.memstats)
         usedmem = str(usedmem) + '%'
         if usedmem <= '40%':
             bar = 'bar-success'

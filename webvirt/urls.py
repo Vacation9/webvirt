@@ -15,16 +15,16 @@ class Index:
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         content = ""
-	numVMs = float(len(conn.listAllDomains(0)))
-	perRunningVMs = 100 * (float(len(conn.listAllDomains(16)))) / numVMs
-	perSuspendVMs = 100 * (float(len(conn.listAllDomains(32)))) / numVMs
-	perShutoffVMs = 100 * (float(len(conn.listAllDomains(64)))) / numVMs
-	content += '<h3>VM State Statistics</h3><br />\n'
-	content += '<div class="progress">\n'
-	content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;">Running</div>\n'
-	content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;">Suspended</div>\n'
-	content += '  <div class="bar bar-danger" style="width: ' + str(perShutoffVMs) + '%;">Shut Down</div>\n'
-	content += '</div>\n'
+        numVMs = float(len(conn.listAllDomains(0)))
+        perRunningVMs = 100 * (float(len(conn.listAllDomains(16)))) / numVMs
+        perSuspendVMs = 100 * (float(len(conn.listAllDomains(32)))) / numVMs
+        perShutoffVMs = 100 * (float(len(conn.listAllDomains(64)))) / numVMs
+        content += '<h3>VM State Statistics</h3><br />\n'
+        content += '<div class="progress">\n'
+        content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;">Running</div>\n'
+        content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;">Suspended</div>\n'
+        content += '  <div class="bar bar-danger" style="width: ' + str(perShutoffVMs) + '%;">Shut Down</div>\n'
+        content += '</div>\n'
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
@@ -43,14 +43,14 @@ class Host:
         host = Host()
         content = ""
         data = ""
-	hs = virt.HostServer()
-	content += "Hostname: " + hs.hostname + "<br />"
-	content += "Host type: " + hs.hosttype + "<br />"
-	#content += "Host capabilities: " + hs.caps + "\n"
-	#content += "Host CPU Statistics: " + str(hs.cpustats) + "\n"
-	#content += "Host CPU Map: " + str(hs.cpumap) + "\n"
-	content += "Host Memory Statistics: " + str(hs.memstats) + "<br />"
-	#content += "Other Host Information: " + str(hs.info) + "\n"
+        hs = virt.HostServer()
+        content += "Hostname: " + hs.hostname + "<br />"
+        content += "Host type: " + hs.hosttype + "<br />"
+        #content += "Host capabilities: " + hs.caps + "\n"
+        #content += "Host CPU Statistics: " + str(hs.cpustats) + "\n"
+        #content += "Host CPU Map: " + str(hs.cpumap) + "\n"
+        content += "Host Memory Statistics: " + str(hs.memstats) + "<br />"
+        #content += "Other Host Information: " + str(hs.info) + "\n"
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
@@ -69,22 +69,22 @@ class VM:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         data2 = web.input()
-	content = ""
+        content = ""
         vm = data2['vm']
-	domObj = virt.Domain(conn.lookupByName(vm))
-	if 'action' in data2.keys():
-	    if data2['action'] == 'start':
-	        domObj.startVM()
-	    elif data2['action'] == 'stop':
-	        domObj.stopVM()
-	    elif data2['action'] == 'destroy':
-	        domObj.destroyVM()
-	    elif data2['action'] == 'suspend':
-	        domObj.suspendVM()
-	    elif data2['action'] == 'resume':
-	        domObj.resumeVM()
-	    if data2['action'] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
-	        content += '<h3>' + vm + ' ' +  data2['action'] + ('p' if data2['action'] == 'stop' else '') + ('e' if data2['action'] != 'resume' else '') + 'd.</h3>'
+        domObj = virt.Domain(conn.lookupByName(vm))
+        if 'action' in data2.keys():
+            if data2['action'] == 'start':
+                domObj.startVM()
+            elif data2['action'] == 'stop':
+                domObj.stopVM()
+            elif data2['action'] == 'destroy':
+                domObj.destroyVM()
+            elif data2['action'] == 'suspend':
+                domObj.suspendVM()
+            elif data2['action'] == 'resume':
+                domObj.resumeVM()
+        if data2['action'] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
+            content += '<h3>' + vm + ' ' +  data2['action'] + ('p' if data2['action'] == 'stop' else '') + ('e' if data2['action'] != 'resume' else '') + 'd.</h3>'
         content += "<div class=\"btn-group\">\n<a class=\"btn dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Power Options<span class=\"caret\"></span></a>\n<ul class=\"dropdown-menu\"><li><a href=\"/hackathon/vm?vm=" + vm + "&action=start\">Start</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=stop\">Stop</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=destroy\">Destroy</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=suspend\">Suspend</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=resume\">Resume</a></li></ul></div>"
         data = ""
         for dom in conn.listAllDomains(0):

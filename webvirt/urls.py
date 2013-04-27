@@ -10,6 +10,7 @@ from connection import conn
 import virt
 import web
 import os
+import pymagic
 
 class Index:
     def GET(self):

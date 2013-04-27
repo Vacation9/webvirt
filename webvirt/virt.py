@@ -70,7 +70,7 @@ class HostServer:
                 </domain>
                 """ % (name,mem,cpu,hd,iso,pts)
         )
-         self.domains.append(dom)
+                self.domains.append(dom)
                 return dom
 
 

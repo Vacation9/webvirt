@@ -112,12 +112,12 @@ class Create:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         myform = web.form.Form( 
-            web.form.Textbox("name",form.notnull),
-            web.form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("hd",form.notnull),
-            web.form.Textbox("iso",form.notnull),
-            web.form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("name",web.form.notnull),
+            web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("hd",web.form.notnull),
+            web.form.Textbox("iso",web.form.notnull),
+            web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
         )
         form = myform()
         data = ""
@@ -132,15 +132,15 @@ class Create:
         return templates.create(content, data,form)
     def POST(self): 
         myform = web.form.Form( 
-            web.form.Textbox("name",form.notnull),
-            web.form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("hd",form.notnull),
-            web.form.Textbox("iso",form.notnull),
-            web.form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("name",web.form.notnull),
+            web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("hd",web.form.notnull),
+            web.form.Textbox("iso",web.form.notnull),
+            web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
         )
         form = myform() 
-        if not form.validates(): 
+        if not web.form.validates(): 
             return render.formtest(form)
         else:
             # form.d.boe and form['boe'].value are equivalent ways of

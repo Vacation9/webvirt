@@ -4,6 +4,7 @@
 import auth
 import common
 import config
+import helpers
 from conn import conn
 
 import web
@@ -37,7 +38,13 @@ class Login:
 
 class List:
     def GET(self):
-        return conn.listDefinedDomains()
+        data = ""
+        domains = conn.listDefinedDomains()
+        for dom in domains:
+            dom = conn.lookupByName(dom)
+            data += "name=" + dom.name() + "\n"
+            data += "state=" + helpers.getState(dom.state()[0]) + "\n"
+        return data
 
 class Console:
     def GET(self, domain):

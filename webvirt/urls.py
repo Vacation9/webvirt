@@ -10,7 +10,7 @@ import web
 class Index:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
-	    content = "This is some random text for testing."
+        content = "This is some random text for testing."
         return templates.index(content)
 
 class Auth:

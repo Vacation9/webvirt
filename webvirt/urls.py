@@ -29,7 +29,6 @@ class Index:
         hs = virt.HostServer()
         freemem, usedmem = common.pct_from_mem(hs.memstats)
         usedmem = str(usedmem) + '%'
-        usedmem = "10%"
         if usedmem <= '40%':
             bar = 'bar-success'
         elif '70%' >= usedmem > '40%':

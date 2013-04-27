@@ -15,3 +15,5 @@ def checkpw(username, password):
 def authuser(username, password):
     if checkpw(username, password):
         web.setcookie("session", username)
+        return True
+    return False

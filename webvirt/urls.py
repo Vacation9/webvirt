@@ -32,7 +32,13 @@ class Auth:
         try:
             username = data['username']
             password = data['password']
-            auth.authuser(username, password)
+            if auth.authuser(username, password):
+                if 'redirect' in data:
+                    web.seeother(data['redirect'])
+                else:
+                    web.seeother("http://www.tjhsst.edu/hackathon/")
+            else:
+                web.seeother("http://www.tjhsst.edu/hackathon/login?failed=1")
         except Exception as e:
             return "Caught " + str(e) + " on login auth"
 
@@ -41,7 +47,7 @@ class Login:
         templates = web.template.render('webvirt/templates/')
         data = web.input()
         if "failed" in data:
-            return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
+            return templates.login('<span><p style="color:#FF0000">Failed Login</p></span>')
         else:
             return templates.login('')
 
@@ -56,10 +62,10 @@ class List:
         return web.template.render('webvirt/templates/').index(data)
 
 class Console:
-    def GET(self, domain):
+    def GET(self):
         templates = web.template.render('webvirt/templates/')
-	domObj = conn.lookupByName(domain)
-	streamObj = None
+	domObj = conn.lookupByName(web.input()['domain'])
+	streamObj = conn.streamNew()
 	streamObjStatus = domObj.openConsole(streamObj)
 	if streamObj == 0:
 	    return streamObj

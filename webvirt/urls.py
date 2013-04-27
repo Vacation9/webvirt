@@ -149,7 +149,7 @@ class Ajax:
         ret = ajax_handler.handle(components)
         if ret:
             return ret
-        web.cx.status = '404 Not Found'
+        web.ctx.status = '404 Not Found'
         return '{}'
 
 classes = globals()

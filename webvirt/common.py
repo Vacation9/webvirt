@@ -8,8 +8,9 @@ def parse_post(data):
     ret = {}
     fields = data.split('&')
     for item in fields:
-        key, value = item.split('=')
-        ret[key] = value
+        if '=' in item:
+            key, value = item.split('=')
+            ret[key] = value
     return ret
 
 def getState(state):

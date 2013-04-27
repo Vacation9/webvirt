@@ -21,7 +21,7 @@ class Auth:
 
     def POST(self):
         data = web.data()
-        data = common.parsepost(data)
+        data = common.parse_post(data)
         try:
             username = data['username']
             password = data['password']

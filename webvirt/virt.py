@@ -21,8 +21,7 @@ class Domain:
         if self.rawstate == libvirt.VIR_DOMAIN_RUNNING:
             self.dom.suspend()
     def resumeVM(self):
-        if self.rawstate == libvirt.VIR_DOMAIN_SUSPENDED:
-            self.dom.resume()
+        self.dom.resume()
 
     def get_dict(self):
         return {

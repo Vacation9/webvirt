@@ -2,6 +2,7 @@
     WebVirt URL Handlers
 """
 import auth
+import common
 import config
 from conn import conn
 
@@ -20,7 +21,11 @@ class Auth:
 
     def POST(self):
         data = web.data()
-        return type(data)
+        data = common.parsepost(data)
+        try:
+            username = data['username']
+            password = data['password']
+            auth.authuser(username, password)
 
 class Login:
     def GET(self):

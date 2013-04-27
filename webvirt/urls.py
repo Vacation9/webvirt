@@ -13,7 +13,7 @@ import os
 from pymagic import magic
 import subprocess
 import sys
-from hurry.filesize import size
+from hurry.filesize import size as hsize
 
 class Index:
     def GET(self):
@@ -294,7 +294,7 @@ class ListISOs:
 	files = [x for x in files if x.endswith('.iso')]
 	sizes = []
 	for f in files:
-	    sizes.append(size(os.path.getsize('/var/hackfiles/' + f)))
+	    sizes.append(hsize(os.path.getsize('/var/hackfiles/' + f)))
 	pack = zip(files, sizes)
 	contents = '<h2>Available ISOs</h2><table class="table"><tr><td><b>Name</b></td><td><b>Size</b></td></tr>'
 	for f, size in pack:

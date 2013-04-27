@@ -9,7 +9,7 @@ import web
 
 class Index:
     def GET(self):
-        templates = web.template.render('webvirt/templates/')
+        templates = web.template.render('webvirt/templates/, base='index'')
         return templates.index()
 
 class Auth:

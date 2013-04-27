@@ -109,12 +109,10 @@ class Create:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
-<<<<<<< HEAD
         return templates.create(content, data,form)
 
 =======
         return templates.create(content, data,form,web.cookies().get("session"))
->>>>>>> everything like logged in
     def POST(self): 
         myform = web.form.Form( 
             web.form.Textbox("name",web.form.notnull),

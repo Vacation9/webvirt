@@ -150,7 +150,7 @@ class Auth:
 class Logout:
     def GET(self):
         auth.destroy_session()
-        web.seeother("/hackathon/index/")
+        web.seeother("http://www.tjhsst.edu/hackathon/")
 
 class Login:
     def GET(self):

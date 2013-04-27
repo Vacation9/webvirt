@@ -125,7 +125,7 @@ class Create:
         else:
             # form.d.boe and form['boe'].value are equivalent ways of
             # extracting the validated arguments from the form.
-            return "Well fuck me with a swiffer wet jet! name: %s, mem: %d, cpu: %d, hd: %s, iso: %s, pts: %d" % (form['name'].value, form['mem'].value,form['cpu'].value,form['hd'].value,form['iso'].value,form['pts'].value)
+            return "Well fuck me with a swiffer wet jet! name: %s, mem: %s, cpu: %s, hd: %s, iso: %s, pts: %s" % (form['name'].value, form['mem'].value,form['cpu'].value,form['hd'].value,form['iso'].value,form['pts'].value)
 
 class Auth:
     def GET(self):

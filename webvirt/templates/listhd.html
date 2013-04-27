@@ -1,0 +1,13 @@
+$def using (pack)
+
+<table class="table">
+    <tr>
+        <td>Name</td>
+        <td>Size</td>
+    </tr>
+    $for set in $pack:
+        <tr>
+            <td>$set[0]</td>
+            <td>$set[1]</td>
+        </tr>
+</table>

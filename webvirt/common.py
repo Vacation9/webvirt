@@ -3,6 +3,7 @@
 """
 
 import libvirt
+import subprocess
 
 def parse_post(data):
     ret = {}
@@ -44,3 +45,12 @@ def pct_from_mem(memstats):
     free = round(free * 100)
     used = 100 - free
     return (free, used)
+
+def run_proc(exe):
+    p = subprocess.Popen(exe, stdout=subprocess.PIPE)
+    while True:
+        retcode = p.poll()
+        line = p.stdout.readline()
+        yield line
+        if retcode is not None:
+            break

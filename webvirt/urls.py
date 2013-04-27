@@ -256,4 +256,28 @@ class HD:
            os.system('cd /var/hackfiles && qemu-img create ' + form['name'].value + ".qcow2 " + form['size'].value + 'G')
            web.seeother("http://www.tjhsst.edu/hackathon/")
 
+class ListHD:
+    def GET(self):
+        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
+        templates = web.template.render('webvirt/templates/')
+        files = os.listdir('/var/hackfiles/')
+        files = [x if x.endswith('.qcow2') for x in files]
+        sizes = []
+        for f in files:
+            for line in run_proc(['qemu-img', 'info', '/var/hackfiles/' + f]):
+                if "virtual size" in line:
+                    sizes.append(line.split(' ')[2])
+        pack = zip(files, sizes)
+        contents = str(templates.listhd(pack))
+        data = ""
+        for dom in conn.listAllDomains(0):
+            dom = virt.Domain(dom)
+            if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
+            elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
+            else:
+                data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
+        return templates.index.render(contents, data, web.cookies().get("session"))
+        
 classes  = globals()

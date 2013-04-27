@@ -261,7 +261,7 @@ class ListHD:
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         files = os.listdir('/var/hackfiles/')
-        files = [x if x.endswith('.qcow2') for x in files]
+        files = [x for x in files if x.endswith('.qcow2')]
         sizes = []
         for f in files:
             for line in run_proc(['qemu-img', 'info', '/var/hackfiles/' + f]):

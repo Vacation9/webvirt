@@ -47,10 +47,6 @@ class Host:
                        data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
         return templates.index(content, data)
 
-
-class VM:
-
-
 class Auth:
     def GET(self):
         web.header('Content-type', 'text/html')

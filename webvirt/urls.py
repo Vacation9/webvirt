@@ -33,7 +33,7 @@ class Login:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
         data = web.data()
-  	    data = common.parse_post(data)
+        data = common.parse_post(data)
         try:
             failed = data['failed']
             if failed == 1:

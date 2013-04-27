@@ -20,9 +20,9 @@ class Index:
         data = ""
         for dom in conn.listAllDomains(0):
                 dom = Domain(dom)
-                if(dom.state == "Running."):
+                if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
                         data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
-                elif(dom.state == "Shut off."):
+                elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTDOWN):
                         data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
                 else:
                         data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"

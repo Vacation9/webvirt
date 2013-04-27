@@ -32,7 +32,7 @@ class Host:
         host = Host()
         content = ""
         data = ""
-	hs = virt.HostServer(conn)
+	hs = virt.HostServer()
 	content += "Hostname: " + hs.hostname + "<br />"
 	content += "Host type: " + hs.hosttype + "<br />"
 	#content += "Host capabilities: " + hs.caps + "\n"

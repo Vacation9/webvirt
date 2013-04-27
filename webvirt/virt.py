@@ -10,7 +10,7 @@ class Domain:
         self.state = common.getState(self.rawstate)
 
 class HostServer:
-    def __init__(self, conn):
+    def __init__(self):
         self.hostname = conn.getHostname()
         self.hosttype = conn.getType()
         self.caps = conn.getCapabilities()

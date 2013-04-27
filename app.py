@@ -10,7 +10,8 @@ urls = (
     '/console', 'Console',
     '/host', 'Host',
     '/vm', 'VM',
-    '/ajax/(.*)', 'Ajax'
+    '/ajax/(.*)', 'Ajax',
+    '/create', 'Create'
         )
 
 if __name__ == '__main__':

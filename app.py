@@ -2,7 +2,7 @@ import web
 import webvirt
 
 urls = (
-    '/', 'Index'
+    '/', 'Index',
         )
 
 if __name__ == '__main__':

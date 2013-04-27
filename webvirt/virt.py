@@ -40,9 +40,9 @@ class HostServer:
         self.memstats = conn.getMemoryStats(libvirt.VIR_NODE_MEMORY_STATS_ALL_CELLS,0)
         self.domains = [Domain(dom) for dom in conn.listAllDomains(0)]
 
-        def createDomain(self,name,mem,cpu,hd,iso,pts):
-                dom = conn.defineXML("""
-               <domain type="kvm">
+    def createDomain(self,name,mem,cpu,hd,iso,pts):
+        dom = conn.defineXML("""
+              <domain type="kvm">
                    <name>%s</name>
                    <memory>%d</memory>
                    <vcpu>%d</vcpu>
@@ -67,11 +67,11 @@ class HostServer:
                        <graphics type="vnc" port="-1" autoport="yes"/>
                        <console type='pty'>
                            <target type='serial' port='0' />
-                       </console>
+                               </console>
                     </devices>
                 </domain>
                 """ % (name,mem,cpu,hd,iso,pts))
-                self.domains.append(dom)
-                return dom
+         self.domains.append(dom)
+         return dom
 
 

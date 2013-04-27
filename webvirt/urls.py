@@ -32,7 +32,6 @@ class Login:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
         data = web.input()
-        data = common.parse_post(data)
         if "failed" in data:
             return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
         else:

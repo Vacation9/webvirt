@@ -83,8 +83,8 @@ class VM:
                 domObj.suspendVM()
             elif data2['action'] == 'resume':
                 domObj.resumeVM()
-        if data2['action'] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
-            content += '<h3>' + vm + ' ' +  data2['action'] + ('p' if data2['action'] == 'stop' else '') + ('e' if data2['action'] != 'resume' else '') + 'd.</h3>'
+            if data2['action'] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
+                content += '<h3>' + vm + ' ' +  data2['action'] + ('p' if data2['action'] == 'stop' else '') + ('e' if data2['action'] != 'resume' else '') + 'd.</h3>'
         content += "<div class=\"btn-group\">\n<a class=\"btn dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Power Options<span class=\"caret\"></span></a>\n<ul class=\"dropdown-menu\"><li><a href=\"/hackathon/vm?vm=" + vm + "&action=start\">Start</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=stop\">Stop</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=destroy\">Destroy</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=suspend\">Suspend</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=resume\">Resume</a></li></ul></div>"
         data = ""
         for dom in conn.listAllDomains(0):

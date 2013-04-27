@@ -187,6 +187,7 @@ class Upload:
         <input type="submit" />
         </form>"""
         data = ""
+        templates = web.template.render("webvirt/templates/")
         return templates.index(content, data, web.cookies().get("session"))
 
     def POST(self):

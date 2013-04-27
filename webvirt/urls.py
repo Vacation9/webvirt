@@ -136,7 +136,7 @@ class Create:
             return web.template.render.formtest(form)
         else:
             hs = virt.HostServer()
-            hs.createDomain(form['name'].value, form['mem'].value, form['cpu'].value, form['hd'].value, form['iso'].value, form['pts'].value)
+            hs.createDomain(form['name'].value, form['mem'].value, form['cpu'].value, form['hd'].value, form['iso'].value, form['vnc'].value ,form['pts'].value)
             web.seeother("http://www.tjhsst.edu/hackathon/")  
 
 class Auth:

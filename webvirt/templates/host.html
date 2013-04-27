@@ -1,11 +1,10 @@
 $def with (hostname, type, freepct, usedpct)
 <h2>Host Information</h2>
-<span class="hostinfo">Hostname: $hostname</span>
-<span class="hostinfo">Host Type: $type</span>
-<span class="hostinfo">Memory Statistics:
+<span><b>Hostname:</b> $hostname</span> <br />
+<span><b>Host Type:</b> $type</span> <br />
+<span><b>Memory Statistics:</b>
     <div class="progress">
         <div class="bar bar-danger" style="width: $usedpct"></div>
         <div class="bar bar-success" style="width: $freepct"></div>
     </div>
-    $freepct <br /> $usedpct
 </span>

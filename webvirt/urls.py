@@ -15,7 +15,12 @@ class Index:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         content = "This is some random text for testing."
-        return templates.index(content)
+        data = {}
+        domains = conn.liistDefinedDomains()
+        for dom in domains:
+                dom = conn.lookupByName(dom)
+                data += "<li>" + dom + '<p style="color:#00FF00"' + common.getState(dom.state(0)[0]) + "</p></li>"
+        return templates.index(content, data)
 
 class Auth:
     def GET(self):

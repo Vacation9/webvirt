@@ -1,4 +1,4 @@
-$def with (content,data,vm)
+$def with (content,data,vm,user)
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,7 +50,7 @@ $def with (content,data,vm)
           <a class="brand" href="/hackathon/">WebVirt</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"></a>
+              Logged in as <a href="#" class="navbar-link">$:user</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="/hackathon/">Virtual Machines</a></li>

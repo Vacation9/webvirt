@@ -44,7 +44,7 @@ class List:
         for dom in domains:
             dom = conn.lookupByName(dom)
             data += "name=" + dom.name() + "\n"
-            data += "state=" + common.getState(dom.state(None)[0]) + "\n"
+            data += "state=" + common.getState(dom.state(0)[0]) + "\n"
         return data
 
 class Console:

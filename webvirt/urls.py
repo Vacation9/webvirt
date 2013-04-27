@@ -9,6 +9,7 @@ import libvirt
 from connection import conn
 import virt
 import web
+import os
 
 class Index:
     def GET(self):

@@ -188,6 +188,7 @@ class Upload:
         </form>"""
         data = ""
         return templates.index(content, data, web.cookies().get("session")
+
     def POST(self):
         x = web.input(myfile={})
         eb.debug(x['myfile'].filename) # This is the filename

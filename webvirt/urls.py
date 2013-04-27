@@ -20,7 +20,7 @@ class Index:
         data = ""
         for dom in conn.listAllDomains(0):
                 dom = Domain(dom)
-                data += "<li><a href='#'>" + dom.name + "<div align='right'>" + dom.state + "</div></a></li>"
+                data += "<li><a href='#'>" + dom.name + "<div class='pull-right'>" + dom.state + "</div></a></li>"
         return templates.index(content, data)
 
 class Auth:

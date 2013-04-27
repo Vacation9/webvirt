@@ -158,6 +158,8 @@ class Logout:
 
 class Login:
     def GET(self):
+        if auth.verify_auth():
+            web.seeother("http://www.tjhsst.edu/hackathon/")
         templates = web.template.render('webvirt/templates/')
         data = web.input()
         if "failed" in data:

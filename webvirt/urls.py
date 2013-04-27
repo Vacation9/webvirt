@@ -32,9 +32,16 @@ class List:
         return conn.listDefinedDomains()
 
 class Console:
-    def GET(self):
+    def GET(self, domain):
         templates = web.template.render('webvirt/templates/')
-	content = 'Not implemented'
-	return templates.index(content)
+	domObj = conn.lookupByName(domain)
+	streamObj = None
+	streamObjStatus = domObj.openConsole(streamObj)
+	if streamObj == 0:
+	    return streamObj
+	elif streamObj == -1:
+	    return 'Error opening stream object'
+	else:
+	    return 'Something very, very bad happened'
 
 classes = globals()

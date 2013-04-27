@@ -44,6 +44,7 @@ class Host:
         data = ""
         hs = virt.HostServer()
         freemem, usedmem = common.pct_from_mem(hs.memstats)
+        freemem, usedmed = [str(x) + '%' for x in (freemem, usedmem)]
         content = templates.host(hs.hostname, hs.hosttype, freemem, usedmem)
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

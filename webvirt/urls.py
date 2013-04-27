@@ -9,7 +9,6 @@ import libvirt
 from connection import conn
 import virt
 import web
-from web import form
 
 class Index:
     def GET(self):
@@ -113,13 +112,13 @@ class Create:
         if cookies.get("session") == None:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
-        myform = form.Form( 
-            form.Textbox("name",form.notnull),
-            form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            form.Textbox("hd",form.notnull),
-            form.Textbox("iso",form.notnull),
-            form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
+        myform = web.form.Form( 
+            web.form.Textbox("name",form.notnull),
+            web.form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("hd",form.notnull),
+            web.form.Textbox("iso",form.notnull),
+            web.form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
         )
         form = myform()
         data = ""
@@ -133,13 +132,13 @@ class Create:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.create(content, data,form)
     def POST(self): 
-        myform = form.Form( 
-            form.Textbox("name",form.notnull),
-            form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
-            form.Textbox("hd",form.notnull),
-            form.Textbox("iso",form.notnull),
-            form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
+        myform = web.form.Form( 
+            web.form.Textbox("name",form.notnull),
+            web.form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("hd",form.notnull),
+            web.form.Textbox("iso",form.notnull),
+            web.form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
         )
         form = myform() 
         if not form.validates(): 

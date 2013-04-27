@@ -32,3 +32,9 @@ def getState(state):
         return "Suspended."
     else:
         raise Exception("This should never happen. state=" + state)
+
+def allinfo(doms):
+    ret = {}
+    for dom in doms:
+        ret[dom.name] = (dom.get_dict())
+    return ret

@@ -29,7 +29,8 @@ class Index:
 	content += '  <div class="bar bar-failure" style="width: ' + str(perShutoffVMs) + '%;"></div>\n'
 	content += '</div>\n'
         data = ""
-        content = templates.indextable()
+        vminfo = common.allinfo(conn.listAllDomains(0))
+        content = templates.indextable(vminfo)
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

@@ -1,9 +1,12 @@
+$def with (vminfo)
 <table id="stats" class=".table">
     <tr>
         <td>Name</td>
         <td>State</td>
     </tr>
+    $for vm in $vminfo:
+        <tr>
+            <td>$vminfo[$vm]['name']</td>
+            <td>$vminfo[$vm]['status']</td>
+        </tr>
 </table>
-<script type="text'javascript">
-    populate_table("stats");
-</script>

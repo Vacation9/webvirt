@@ -32,7 +32,7 @@ class Auth:
 class Login:
     def GET(self,failed):
         templates = web.template.render('webvirt/templates/')
-        if(failed = 1):
+        if failed == 1:
 		return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
 	else:
 		return templates.login()

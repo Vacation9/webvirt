@@ -1,6 +1,7 @@
 """
     WebVirt URL Handlers
 """
+import auth
 import config
 from conn import conn
 
@@ -22,6 +23,7 @@ class Auth:
 class List:
     def GET(self):
         return conn.listDefinedDomains()
+
 
 
 classes = globals()

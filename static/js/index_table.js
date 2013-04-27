@@ -5,7 +5,18 @@ function populate_table(id) {
 
     function builder(request) {
         function callback(data) {
-            console.log(request.responseText);
+            if(request.readyState == 4) {
+                var list = JSON.parse(request.responseText);
+                vmlist = list.vms;
+                for(var i = 0; i < vmlisr.length; i++) {
+                    name = vmlist[i];
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.innerHTML = name;
+                    tr.appendChild(td);
+                }
+            }
         }
         return callback;
     }

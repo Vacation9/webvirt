@@ -45,7 +45,7 @@ class List:
             dom = conn.lookupByName(dom)
             data += "name=" + dom.name() + "\n"
             data += "state=" + common.getState(dom.state(0)[0]) + "\n"
-        return data
+        return web.template.render('webvirt/templates/').index(data)
 
 class Console:
     def GET(self, domain):

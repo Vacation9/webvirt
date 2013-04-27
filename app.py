@@ -11,7 +11,7 @@ urls = (
     '/console', 'Console',
     '/vm', 'VM',
     '/create', 'Create',
-    '/upload', 'Upload'
+    '/upload', 'Upload',
     '/hd','HD'
         )
 

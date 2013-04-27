@@ -8,9 +8,6 @@ class AjaxHandler:
         self.handlers = {}
 
     def handle(self, path):
-        import sys
-        sys.stderr.write("Handling " + str(path) + "\n")
-        sys.stderr.write(str(self.handlers))
         if len(path) < 1:
             return
         root = path[0]
@@ -23,7 +20,8 @@ class AjaxHandler:
             self.handlers[path] = func
 
 def vminfo(path, params):
-    print params
+    import sys
+    sys.stderr.write(str(params))
     hs = virt.HostServer()
     if len(params) < 0:
         web.ctx.status = "400 Bad Request"

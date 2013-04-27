@@ -289,7 +289,7 @@ class ListHD:
 class ListISOs:
     def GET(self):
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
-	templates = web.teamplate.render('webvirt/templates/')
+	templates = web.template.render('webvirt/templates/')
 	files = os.listdir('/var/hackfiles/')
 	files = [x for x in files if x.endswith('.iso')]
 	sizes = []

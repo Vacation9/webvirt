@@ -75,7 +75,7 @@ class VM:
 	        domObj.resumeVM()
 	    if data2[action] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
 	        content += '<h3>' + vm + ' ' +  action + ('p' if data[2] == 'stop' else '') + 'ed.</h3>'
-        content += "<a href='/hackathon/vm?vm=" + vm + "&action=start"">Start</a>"
+        content += ""
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

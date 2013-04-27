@@ -115,11 +115,11 @@ class Console:
         return templates.console()
 
 class Ajax:
-    def GET(self):
+    def GET(self, path=''):
         authed = auth.verify_auth()
         if not authed:
             web.ctx.status = '401 Unauthorized'
             return "{}"
-        return web.ctx.path
+        return path
 
 classes = globals()

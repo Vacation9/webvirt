@@ -8,7 +8,7 @@ function populate_table(id) {
             if(request.readyState == 4) {
                 var list = JSON.parse(request.responseText);
                 vmlist = list.vms;
-                for(var i = 0; i < vmlisr.length; i++) {
+                for(var i = 0; i < vmlist.length; i++) {
                     name = vmlist[i];
                     tr = document.createElement("tr");
                     table.appendChild(tr);

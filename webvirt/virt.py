@@ -44,8 +44,8 @@ class HostServer:
         dom = conn.defineXML("""
               <domain type="kvm">
                    <name>%s</name>
-                   <memory>%d</memory>
-                   <vcpu>%d</vcpu>
+                   <memory>%s</memory>
+                   <vcpu>%s</vcpu>
                    <os>
                         <type arch="x86_64">hvm</type>
                         <boot dev="cdrom"/>
@@ -66,8 +66,9 @@ class HostServer:
                        </interface>
                        <graphics type="vnc" port="-1" autoport="yes"/>
                        <console type='pty'>
+                           <source path='/dev/pts/%d' />
                            <target type='serial' port='0' />
-                               </console>
+                       </console>
                     </devices>
                 </domain>
                 """ % (name,mem,cpu,hd,iso,pts))

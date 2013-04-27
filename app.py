@@ -7,7 +7,8 @@ urls = (
     '/auth', 'Auth',
     '/list', 'List',
     '/login', 'Login',
-    '/console', 'Console'
+    '/console', 'Console',
+    '/host', 'Host'
         )
 
 if __name__ == '__main__':

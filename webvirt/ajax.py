@@ -20,10 +20,8 @@ class AjaxHandler:
             self.handlers[path] = func
 
 def vminfo(path, params):
-    import sys
-    sys.stderr.write(str(params))
     hs = virt.HostServer()
-    if len(params) < 0:
+    if len(params) < 1:
         web.ctx.status = "400 Bad Request"
         return "{}"
     vm = params.pop(0)

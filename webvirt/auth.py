@@ -3,7 +3,7 @@ import web
 import sqlite3
 
 def checkpw(username, password):
-    authdb = sqlite3.connect('users.db')
+    authdb = sqlite3.connect('webvirt/users.db')
     cur = authdb.cursor()
     pwdhash = hashlib.sha512(password).hexdigest()
     cur.execute('select * from users where username=? and password=?', (username, pwdhash))

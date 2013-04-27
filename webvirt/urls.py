@@ -10,6 +10,9 @@ import web
 
 class Index:
     def GET(self):
+        cookies = web.cookies()
+        if cookies.get("session") == None:
+            web.seeother("login")
         templates = web.template.render('webvirt/templates/')
         content = "This is some random text for testing."
         return templates.index(content)

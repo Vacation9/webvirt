@@ -216,7 +216,7 @@ class Upload:
              fout = open(filedir +'/'+ filename,'w') # creates the file where the uploaded file should be stored
              fout.write(x.myfile.file.read()) # writes the uploaded file to the newly created file.
              fout.close() # closes the file, upload complete.
-	     if magic.from_file(filedir + filename, mime=True) != "application/octet-stream":
+	     if not magic.from_file(filedir + filename, mime=True).contains("ISO 9660 CD-ROM filesystem data"):
 	         os.remove(filedir + filename)
 		 raise web.seeother('http://www.tjhsst.edu/hackathon/upload?bad=1')
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')

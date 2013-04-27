@@ -1,3 +1,4 @@
+import libvirt
 from connection import conn
 import common
 

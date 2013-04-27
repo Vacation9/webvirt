@@ -78,9 +78,11 @@ $def with (content,data,form)
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          $:content 
+          $:content
+          <form name="main" method="post">
           $if not form.valid: <p class="error">Nope, try agian. You have been coaxed into a snafu.</p>
           $:form.render()
+          <input type="submit" />    </form>
 	  </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->

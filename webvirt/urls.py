@@ -115,7 +115,7 @@ class Create:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
-        return templates.index(content, data)
+        return templates.create(content, data,form)
 
 class Auth:
     def GET(self):

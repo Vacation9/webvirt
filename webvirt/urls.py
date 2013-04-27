@@ -18,32 +18,32 @@ class Index:
         content = "This is some random text for testing."
         data = ""
         for dom in conn.listAllDomains(0):
-                dom = Domain(dom)
+            dom = Domain(dom)
                 if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
-                        data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
-                elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTDOWN):
-                        data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
+                    data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
+                elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+                    data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
                 else:
-                        data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
+                    data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
         return templates.index(content, data)
 
 class Host:
-     def GET(self):
-         cookies = web.cookies()
+    def GET(self):
+        cookies = web.cookies()
          if cookies.get("session") == None:
-              web.seeother("http://www.tjhsst.edu/hackathon/login")
+             web.seeother("http://www.tjhsst.edu/hackathon/login")
          templates = web.template.render('webvirt/templates/')
          host = Host()
          content = ""
          data = ""
          for dom in conn.listAllDomains(0):
-               dom = Domain(dom)
-               if(dom.state == "Running."):
-                       data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
-               elif(dom.state == "Shut off."):
-                       data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
-               else:
-                       data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
+             dom = Domain(dom)
+                if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
+                    data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
+                elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+                    data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
+                else:
+                    data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
          return templates.index(content, data)
 
 class Auth:
@@ -85,14 +85,14 @@ class List:
 class Console:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
-	domObj = conn.lookupByName(web.input()['domain'])
-	streamObj = libvirt.virStream(conn)
-	streamObjStatus = domObj.openConsole(None, streamObj, 0)
-	if streamObjStatus == 0:
-	    return streamObj
-	elif streamObjStatus == -1:
-	    return 'Error opening stream object'
-	else:
-	    return 'Something very, very bad happened'
+        domObj = conn.lookupByName(web.input()['domain'])
+        streamObj = libvirt.virStream(conn)
+        streamObjStatus = domObj.openConsole(None, streamObj, 0)
+        if streamObjStatus == 0:
+            return streamObj
+        elif streamObjStatus == -1:
+            return 'Error opening stream object'
+        else:
+            return 'Something very, very bad happened'
 
 classes = globals()

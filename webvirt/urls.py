@@ -305,7 +305,7 @@ class ListISOs:
 	    dom = virt.Domain(dom)
 	    if dom.rawstate == libvirt.VIR_DOMAIN_RUNNING:
 	        data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
-	    elif dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+	    elif dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF:
 	        data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
 	    else:
 	        data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"

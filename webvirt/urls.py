@@ -26,7 +26,7 @@ class Auth:
             username = data['username']
             password = data['password']
             auth.authuser(username, password)
-        except Exception e:
+        except Exception as e:
             return "Caught " + e " on login auth"
 
 class Login:

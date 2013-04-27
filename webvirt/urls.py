@@ -187,7 +187,7 @@ class Upload:
     def GET(self):
         params = web.input()
 	if 'bad' in params.keys() and int(params['bad']) == 1:
-	    return "<div class=\"alert\"><strong><strong>Error!</strong>Your uploaded file was not an ISO file.</strong></div>"
+	    return web.template.render("webvirt/templates/").index("<div class=\"alert\"><strong><strong>Error!</strong>Your uploaded file was not an ISO file.</strong></div>", "", web.cookies().get("session"))
         content = """
         <h2>Upload CDROM/DVDROM ISO file</h2>
         <form method="POST" enctype="multipart/form-data" action="">

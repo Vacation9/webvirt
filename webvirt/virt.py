@@ -57,7 +57,6 @@ class HostServer:
                             <target dev="hda" bus="virtio"/>
                        </disk>
                        <disk type='file' device='cdrom'>
-                            <!--<driver name='qemu' type='raw'/>-->
                             <source file='%s'/>
                             <target dev='hdc' bus='ide' tray='closed'/>
                             <readonly/>
@@ -68,7 +67,6 @@ class HostServer:
                        </interface>
                        <graphics type="vnc" port="-1" autoport="yes"/>
                        <console type='pty'>
-                           <source path='/dev/pts/%d' />
                            <target type='serial' port='0' />
                        </console>
                     </devices>

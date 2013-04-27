@@ -68,7 +68,7 @@ class Console:
 	streamObjStatus = domObj.openConsole("pty0", streamObj, 0)
 	if streamObjStatus == 0:
 	    return streamObj
-	elif streamObj == -1:
+	elif streamObjStatus == -1:
 	    return 'Error opening stream object'
 	else:
 	    return 'Something very, very bad happened'

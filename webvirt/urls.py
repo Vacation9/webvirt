@@ -36,7 +36,7 @@ class Index:
         usedmem = str(usedmem) + '%'
         if usedmem <= '40%':
             bar = 'bar-success'
-        elif '70%' >= usedmem > '40%':
+        elif '75%' >= usedmem > '40%':
             bar = 'bar-warning'
         else:
             bar = 'bar-danger'

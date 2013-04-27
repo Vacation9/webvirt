@@ -238,7 +238,7 @@ class HD:
        if not form.validates():
            return render.formtest(form)
        else:
-           os.system('cd /var/hackfiles && qemu-img create' + form['name'].value + " " + form['size'].value + 'G')
+           os.system('cd /var/hackfiles && qemu-img create ' + form['name'].value + " " + form['size'].value + 'G')
            web.seeother("http://www.tjhsst.edu/hackathon/")
 
 classes  = globals()

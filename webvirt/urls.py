@@ -59,7 +59,7 @@ class List:
 class Console:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
-	domObj = conn.lookupByName(web.inputs()['domain'])
+	domObj = conn.lookupByName(web.input()['domain'])
 	streamObj = conn.virStreamNew()
 	streamObjStatus = domObj.openConsole(streamObj)
 	if streamObj == 0:

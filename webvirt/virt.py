@@ -8,6 +8,16 @@ class Domain:
         self.name = dom.name()
         self.rawstate = dom.state(0)[0]
         self.state = common.getState(self.rawstate)
+    def startVM(self):
+        self.dom.create()
+    def stopVM(self):
+        self.dom.shutdown()
+    def destroyVM(self):
+        self.dom.destroy()
+    def suspendVM(self):
+        self.dom.suspend()
+    def resumeVM(self):
+        self.dom.resume()
 
 class HostServer:
     def __init__(self):

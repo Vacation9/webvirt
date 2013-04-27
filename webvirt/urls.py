@@ -121,6 +121,7 @@ class Create:
         )
         form = myform()
         data = ""
+        content = "<h2>Create a New VM</h2>"
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

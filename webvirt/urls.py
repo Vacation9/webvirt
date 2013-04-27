@@ -35,7 +35,7 @@ class Host:
 	hs = virt.HostServer(conn)
 	content += "Hostname: " + hs.hostname + "\n"
 	content += "Host type: " + hs.hosttype + "\n"
-	content += "Host capabilities: " + hs.caps + "\n"
+	content += "Host capabilities: " + str(hs.caps) + "\n"
 	content += "Host CPU Statistics: " + hs.cpustats + "\n"
 	content += "Host CPU Map: " + hs.cpumap + "\n"
 	content += "Host Memory Statistics: " + hs.memstats + "\n"

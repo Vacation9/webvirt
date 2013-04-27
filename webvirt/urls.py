@@ -13,6 +13,7 @@ import os
 from pymagic import magic
 import subprocess
 import sys
+from hurry import filesize
 
 class Index:
     def GET(self):
@@ -284,5 +285,30 @@ class ListHD:
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.index(contents, data, web.cookies().get("session"))
-        
+
+class ListISOs:
+    def GET(self):
+        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
+	templates = web.teamplate.render('webvirt/templates/')
+	files = os.listdir('/var/hackfiles/')
+	files = [x for x in files if x.endswith('.iso')]
+	sizes = []
+	for f in files:
+	    sizes.append(filesize.size(os.path.getsize('/var/hackfiles/' + f)))
+	pack = zip(files, sizes)
+	contents = '<h2>Available ISOs</h2><table class="table"><tr><td><b>Name</b></td><td><b>Size</b></td></tr>'
+	for f, size in pack:
+	    contents += "<tr><td>/var/hackfiles/%s</td><td>%s</td></tr>" % (f, size)
+	contents += "</table>"
+	data = ""
+	for dom in conn.listAllDomains(0):
+	    dom = virt.Domain(dom)
+	    if dom.rawstate == libvirt.VIR_DOMAIN_RUNNING:
+	        data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-success'>" + dom.state + "</span></div></a></li>"
+	    elif dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):
+	        data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
+	    else:
+	        data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
+        return templates.index(contents, data, web.cookies().get("session"))
+
 classes  = globals()

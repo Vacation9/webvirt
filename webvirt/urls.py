@@ -146,5 +146,10 @@ class Ajax:
         components = path.split('/')
         ajax_handler = ajax.AjaxHandler()
         ajax_handler.add_handler('vminfo', ajax.vminfo)
+        ret = ajax_handler.handle(components)
+        if ret:
+            return ret
+        web.cx.status = '404 Not Found'
+        return '{}'
 
 classes = globals()

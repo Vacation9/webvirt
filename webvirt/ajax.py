@@ -12,8 +12,7 @@ class AjaxHandler:
             return
         root = path[0]
         if root in self.handlers:
-            self.handlers[root](root, path[1:])
-            return True
+            return self.handlers[root](root, path[1:])
         return False
 
     def add_handler(self, func, path):

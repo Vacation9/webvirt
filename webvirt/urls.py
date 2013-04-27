@@ -5,7 +5,8 @@ import auth
 import common
 import config
 import libvirt
-from conn import conn
+from connection import conn
+from virt import Domain
 
 import web
 
@@ -54,12 +55,9 @@ class Login:
 
 class List:
     def GET(self):
-        data = ""
-        domains = conn.listDefinedDomains()
-        for dom in domains:
-            dom = conn.lookupByName(dom)
-            data += "name=" + dom.name() + "\n"
-            data += "state=" + common.getState(dom.state(0)[0]) + "\n"
+        data = []
+        for dom in conn.listDefinedDomains():
+            data[dom] = Domain(dom)
         return web.template.render('webvirt/templates/').index(data)
 
 class Console:

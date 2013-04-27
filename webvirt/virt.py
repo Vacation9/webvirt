@@ -5,8 +5,8 @@ import common
 class Domain:
     def __init__(self, dom):
         self.dom = dom
-        self.name = self.dom.name()
-        self.rawstate = self.dom.state(0)[0]
+        self.name = dom.name()
+        self.rawstate = dom.state(0)[0]
         self.state = common.getState(self.rawstate)
 
 class HostServer:

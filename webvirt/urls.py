@@ -32,7 +32,7 @@ class Host:
      def GET(self):
         cookies = web.cookies()
         if cookies.get("session") == None:
-        web.seeother("http://www.tjhsst.edu/hackathon/login")
+            web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         host = Host()
         content = ""

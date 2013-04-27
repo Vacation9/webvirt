@@ -79,8 +79,8 @@ class VM:
             content += '</div>'
         content += "<div class=\"btn-group\">\n<a class=\"btn dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Power Options<span class=\"caret\"></span></a>\n<ul class=\"dropdown-menu\"><li    ><a href=\"/hackathon/vm?vm=" + vm + "&action=start\">Start</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=stop\">Stop</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=destroy\">Destroy</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=suspend\">Suspend</a></li>\n<li><a href=\"/hackathon/vm?vm=" + vm + "&action=resume\">Resume</a></li></ul></div>"
         vmdict = domObj.get_dict()
-        mempct = str(vmdict['mempct']) + '%'
-        content += str(templates.vmmemory(mempct))
+        #mempct = str(vmdict['mempct']) + '%'
+        #content += str(templates.vmmemory(mempct))
         content += "<a href='http://www.tjhsst.edu/novnc/vnc.html?host=www.tjhsst.edu&port=6080'>Launch Display Connection</a>"  
         data = ""
         for dom in conn.listAllDomains(0):

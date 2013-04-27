@@ -24,9 +24,9 @@ class Index:
 	perShutoffVMs = 100 * (float(len(conn.listAllDomains(64)))) / numVMs
 	content += '<h3>VM State Statistics</h3><br />\n'
 	content += '<div class="progress">\n'
-	content += '  <div class="bar bar-success" style="width: ' + perRunningVMs + '%;"></div>\n'
-	content += '  <div class="bar bar-warning" style="width: ' + perSuspendVMs + '%;"></div>\n'
-	content += '  <div class="bar bar-failure" style="width: ' + perShutoffVMs + '%;"></div>\n'
+	content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;"></div>\n'
+	content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;"></div>\n'
+	content += '  <div class="bar bar-failure" style="width: ' + str(perShutoffVMs) + '%;"></div>\n'
 	content += '</div>\n'
         data = ""
         content = templates.indextable()

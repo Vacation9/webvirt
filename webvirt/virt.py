@@ -41,7 +41,7 @@ class HostServer:
         self.domains = [Domain(dom) for dom in conn.listAllDomains(0)]
 
     def createDomain(self,name,mem,cpu,hd,iso,pts):
-         dom = conn.defineXML("""
+        dom = conn.defineXML("""
               <domain type="kvm">
                    <name>%s</name>
                    <memory>%d</memory>
@@ -71,7 +71,7 @@ class HostServer:
                     </devices>
                 </domain>
                 """ % (name,mem,cpu,hd,iso,pts))
-          self.domains.append(dom)
-          return dom
+        self.domains.append(dom)
+        return dom
 
 

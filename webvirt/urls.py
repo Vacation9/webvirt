@@ -81,6 +81,7 @@ class VM:
         vmdict = domObj.get_dict()
         #mempct = str(vmdict['mempct']) + '%'
         #content += str(templates.vmmemory(mempct))
+	content += "<br />"
         content += "<a href='http://www.tjhsst.edu/novnc/vnc.html?host=www.tjhsst.edu&port=6080'>Launch Display Connection</a>"  
         data = ""
         for dom in conn.listAllDomains(0):

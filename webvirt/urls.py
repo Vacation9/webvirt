@@ -101,7 +101,7 @@ class Create:
             web.form.Textbox("name",web.form.notnull,description="Name of Virtual Machine: ",align='left'),
             web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Amount of Memory (in KiB): ",align='left'),
             web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Number of Virtual Processors: ",align='left'),
-            web.form.Textbox("hd",web.form.notnull,description='Full Path to hard drive file (<a href="www.tjhsst.edu/hackathon/listhd">List</a>): ',align='left'),
+            web.form.Textbox("hd",web.form.notnull,description='Full Path to hard drive file: ',align='left'),
             web.form.Textbox("iso",web.form.notnull,description="Fulleb Path to cdrom iso file (e.x /var/hackfiles/gentoo.iso): ",align='left'),
             web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="PTS number for serial console: ",align='left'),
         )

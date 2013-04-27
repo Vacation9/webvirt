@@ -32,14 +32,16 @@ class Auth:
 class Login:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
-	    data = web.data()
-	    data = common.parse_post(data)
-	    try:
-	        failed = data['failed']
+        data = web.data()
+  	    data = common.parse_post(data)
+        try:
+            failed = data['failed']
             if failed == 1:
-		    return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
-	    else:
-		    return templates.login()
+                return templates.login('<h3><p style="background-color:#FF0000">Failed Login</p></h3>')
+            else:
+                return templates.login()
+        except Exception as e:
+            return str(e)
 
 
 class List:

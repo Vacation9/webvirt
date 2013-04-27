@@ -199,5 +199,7 @@ class Upload:
              fout = open(filedir +'/'+ filename,'w') # creates the file where the uploaded file should be stored
              fout.write(x.myfile.file.read()) # writes the uploaded file to the newly created file.
              fout.close() # closes the file, upload complete.
-        raise web.seeother('/upload')
+        raise web.seeother('http://www.tjhsst.edu/hackathon/upload')
+
+
 classes globals()

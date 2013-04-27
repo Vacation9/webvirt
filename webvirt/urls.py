@@ -212,9 +212,9 @@ class HD:
            web.seeother("http://www.tjhsst.edu/hackathon/login")
        templates = web.template.render('webvirt/templates/')
        myform = web.form.Form(
-                           web.form.Textbox("name",web.form.notnull,description="Name of Hard Drive: ",align='left'),
-                           web.form.Textbox("size",web.form.notnull,description="Size of Hard Drive (GB): ",align='left')
-                           )
+            web.form.Textbox("name",web.form.notnull,description="Name of Hard Drive: ",align='left'),
+            web.form.Textbox("size",web.form.notnull,description="Size of Hard Drive (GB): ",align='left')
+        )
        form = myform()
        data = ""
        content = "<h2>Create a New Virtual Machine Hard Drive</h2>"

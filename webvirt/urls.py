@@ -60,12 +60,7 @@ class VM:
         templates = web.template.render('webvirt/templates/')
         data2 = web.input()
         vm = data2['vm']
-        content = "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "&action=start"' value='Start'>
-        <br><input type=button onClick="location.href='index.html'" value='Stop'>
-        <br><input type=button onClick="location.href='index.html'" value='Destroy'>
-        <br><input type=button onClick="location.href='index.html'" value='Suspend'>
-        <br><input type=button onClick="location.href='index.html'" value='Resume'>
-        '
+        content = "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=start'' value='Start'>"
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

@@ -12,6 +12,8 @@ class AjaxHandler:
             return
         root = path[0]
         if root in self.handlers:
+            import sys
+            sys.stderr.write("Handling " + path + "\n")
             return self.handlers[root](root, path[1:])
         return False
 

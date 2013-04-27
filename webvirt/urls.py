@@ -30,7 +30,13 @@ class Index:
         hs = virt.HostServer()
         freemem, usedmem = common.pct_from_mem(hs.memstats)
         usedmem = str(usedmem) + '%'
-        content += str(templates.host(hs.hostname, hs.hosttype, usedmem))
+        if usedmem <= '40%':
+            bar = 'bar-success'
+        elif '70%' >= usedmem > '40%':
+            bar = 'bar-warning'
+        else:
+            bar = 'bar-danger'
+        content += str(templates.host(hs.hostname, hs.hosttype, usedmem, bar))
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

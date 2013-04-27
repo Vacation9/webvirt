@@ -65,7 +65,7 @@ class VM:
         <br><input type=button onClick="location.href='index.html'" value='Destroy'>
         <br><input type=button onClick="location.href='index.html'" value='Suspend'>
         <br><input type=button onClick="location.href='index.html'" value='Resume'>
-        "
+        '
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

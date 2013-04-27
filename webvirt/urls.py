@@ -123,10 +123,9 @@ class Create:
         if not form.validates(): 
             return render.formtest(form)
         else:
-            # form.d.boe and form['boe'].value are equivalent ways of
-            # extracting the validated arguments from the form.
             hs = virt.HostServer()
             hs.createDomain(form['name'].value, form['mem'].value, form['cpu'].value, form['hd'].value, form['iso'].value, form['pts'].value)
+            web.seeother("http://www.tjhsst.edu/hackathon/")  
 
 class Auth:
     def GET(self):

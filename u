@@ -5,3 +5,5 @@ git pull -r
 cd ~2014jforcier/hackathon
 git pull $user master
 ./update-waitaha.sh
+cd ~/hackathon
+git pull -r

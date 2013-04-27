@@ -1,10 +1,9 @@
-$def with (hostname, type, freepct, usedpct)
+$def with (hostname, type, usedpct)
 <h2>Host Information</h2>
 <span><b>Hostname:</b> $hostname</span> <br />
 <span><b>Host Type:</b> $type</span> <br />
 <span><b>Memory Usage:</b>
     <div class="progress">
         <div class="bar bar-danger" style="width: $usedpct">Used Memory</div>
-        <div class="bar bar-success" style="width: $freepct"></div>
     </div>
 </span>

@@ -28,8 +28,8 @@ class Index:
         data = ""
         hs = virt.HostServer()
         freemem, usedmem = common.pct_from_mem(hs.memstats)
-        freemem, usedmed = [str(x) + '%' for x in (freemem, usedmem)]
-        content += str(templates.host(hs.hostname, hs.hosttype, freemem, usedmem))
+        usedmem = str(usedmem) + '%'
+        content += str(templates.host(hs.hostname, hs.hosttype, usedmem))
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

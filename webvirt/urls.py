@@ -69,12 +69,12 @@ class Console:
         templates = web.template.render('webvirt/templates/')
 	domObj = conn.lookupByName(web.input()['domain'])
 	streamObj = libvirt.virStream(conn)
-	'''streamObjStatus = domObj.openConsole("/dev/pts/15", streamObj, 0)
+	streamObjStatus = domObj.openConsole("/dev/pts/15", streamObj, 0)
 	if streamObjStatus == 0:
 	    return streamObj
 	elif streamObjStatus == -1:
 	    return 'Error opening stream object'
 	else:
-	    return 'Something very, very bad happened'''
+	    return 'Something very, very bad happened'
 
 classes = globals()

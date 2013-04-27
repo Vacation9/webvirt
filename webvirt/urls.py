@@ -75,11 +75,7 @@ class VM:
 	        domObj.resumeVM()
 	    if data2[action] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
 	        content += '<h3>' + vm + ' ' +  action + ('p' if data[2] == 'stop' else '') + 'ed.</h3>'
-        content += "<input type=button onClick='window.navigate('tjhsst.edu/hackathon/vm?vm=" + vm + "&action=start')' value='Start'>\
-        <br><input type=button onClick='window.navigate('tjhsst.edu/hackathon/vm?vm=" + vm + "&action=stop') value='Stop'>\
-        <br><input type=button onClick='window.navigate('tjhsst.edu/hackathon/vm?vm=" + vm + "&action=destroy')' value='Destroy'>\
-        <br><input type=button onClick='window.navigate('tjhsst.edu/hackathon/vm?vm=" + vm + "&action=suspend')' value='Suspend'>\
-        <br><input type=button onClick='window.navigate('tjhsst.edu/hackathon/vm?vm=" + vm + "&action=resume')' value='Resume'>"
+        content += "<a href='/hackathon/vm?vm=" + vm + "&action=start"">Start</a>"
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

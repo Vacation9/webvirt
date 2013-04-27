@@ -16,7 +16,7 @@ class Index:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         content = "This is some random text for testing."
-        data = {}
+        data = ""
         domains = conn.listDefinedDomains()
         for dom in domains:
                 dom = conn.lookupByName(dom)

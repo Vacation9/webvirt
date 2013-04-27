@@ -21,9 +21,9 @@ class Index:
 	perShutoffVMs = 100 * (float(len(conn.listAllDomains(64)))) / numVMs
 	content += '<h3>VM State Statistics</h3><br />\n'
 	content += '<div class="progress">\n'
-	content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;"></div>\n'
-	content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;"></div>\n'
-	content += '  <div class="bar bar-danger" style="width: ' + str(perShutoffVMs) + '%;"></div>\n'
+	content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;">Running</div>\n'
+	content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;">Suspended</div>\n'
+	content += '  <div class="bar bar-danger" style="width: ' + str(perShutoffVMs) + '%;">Shut Down</div>\n'
 	content += '</div>\n'
         data = ""
         for dom in conn.listAllDomains(0):

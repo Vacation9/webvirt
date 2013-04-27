@@ -20,7 +20,7 @@ class Auth:
 
     def POST(self):
         data = web.data()
-        return "Hello" + str(data)
+        return type(data)
 
 class Login:
     def GET(self):

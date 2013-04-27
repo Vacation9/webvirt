@@ -1,3 +1,9 @@
 import hashlib
-print hashlib.sha512('noraptors').hexdigest()
-
+def checkpw(username,password):
+    authdb = sqlite3.connect('users.db')
+    pwdhash = hashlib.sha512(password).hexdigest()
+    check = authdb.execute('select * from users where username=? and password=?', (username, pwdhash))
+    if check: 
+    	return true
+    else:
+    	return false

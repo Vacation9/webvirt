@@ -12,7 +12,7 @@ class HostServer:
     def __init__(self, conn):
         self.hostname = conn.getHostname()
         self.hosttype = conn.getType()
-        self.caps = conn.getCapabilites()
+        self.caps = conn.getCapabilities()
         self.cpustats = conn.getCPUStats(libvirt.VIR_NODE_CPU_STATS_ALL_CPUS,0)
         self.cpumap = conn.getCPUMap(0)
         self.info = conn.getInfo()

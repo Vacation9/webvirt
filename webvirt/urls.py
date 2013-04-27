@@ -18,10 +18,9 @@ class Index:
         templates = web.template.render('webvirt/templates/')
         content = "This is some random text for testing."
         data = ""
-        domains = conn.listDefinedDomains()
-        for dom in domains:
-                dom = conn.lookupByName(dom)
-                data += "<li><a href='#'>" + dom.name() + "<p class='pull-right'>" + common.getState(dom.state(0)[0]) + "</p></a></li>"
+        for dom in conn.listAllDomains(0):
+                dom = Domain(dom)
+                data += "<li><a href='#'>" + dom.name + "<p class='pull-right'>" + dom.state + "</a></li>"
         return templates.index(content, data)
 
 class Auth:

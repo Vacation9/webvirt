@@ -2,8 +2,8 @@ import web
 import webvirt
 
 urls = (
-    #'/', 'Index',
-    '/', 'Auth',
+    '/', 'Index',
+    '/auth', 'Auth',
         )
 
 if __name__ == '__main__':

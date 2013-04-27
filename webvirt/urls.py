@@ -283,6 +283,6 @@ class ListHD:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-important'>" + dom.state + "</span></div></a></li>"
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
-        return templates.index.render(contents, data, web.cookies().get("session"))
+        return templates.index(contents, data, web.cookies().get("session"))
         
 classes  = globals()

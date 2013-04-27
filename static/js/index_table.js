@@ -4,7 +4,7 @@ function populate_table(id) {
     prnt.appendChild(table);
 
     function callback(data) {
-        console.log(data);
+        console.log(this.request.responseText);
     }
     makeRequest("ajax/listvms", callback, 'GET');
 }

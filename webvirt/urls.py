@@ -218,9 +218,7 @@ class Upload:
              fout = open(filedir +'/'+ filename,'w') # creates the file where the uploaded file should be stored
              fout.write(x.myfile.file.read()) # writes the uploaded file to the newly created file.
              fout.close() # closes the file, upload complete.
-	     if magic.from_file(filedir + filename, mime=True).find("ISO 9660 CD-ROM filesystem data") == -1:
-	         sys.stderr.write(magic.from_file(filedir + filename, mime=True) + "\n")
-	         sys.stderr.write(filedir + filename + '\n')
+	     if magic.from_file(filedir + filename, mime=True) != "application/x-iso9660-image":
 	         os.remove(filedir + filename)
 		 raise web.seeother('http://www.tjhsst.edu/hackathon/upload?bad=1')
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')

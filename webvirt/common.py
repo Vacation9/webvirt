@@ -15,21 +15,21 @@ def parse_post(data):
 
 def getState(state):
     if state == libvirt.VIR_DOMAIN_NOSTATE:
-        return "No State."
+        return "No State"
     elif state == libvirt.VIR_DOMAIN_RUNNING:
-        return "Running."
+        return "Running"
     elif state == libvirt.VIR_DOMAIN_BLOCKED:
-        return "Blocked on a resource."
+        return "Blocked on a resource"
     elif state == libvirt.VIR_DOMAIN_PAUSED:
-        return "Paused."
+        return "Paused"
     elif state == libvirt.VIR_DOMAIN_SHUTDOWN:
-        return "Shutting down."
+        return "Shutting down"
     elif state == libvirt.VIR_DOMAIN_SHUTOFF:
-        return "Shut off."
+        return "Powered off"
     elif state == libvirt.VIR_DOMAIN_CRASHED:
-        return "Crashed."
+        return "Crashed"
     elif state == libvirt.VIR_DOMAIN_PMSUSPENDED:
-        return "Suspended."
+        return "Suspended"
     else:
         raise Exception("This should never happen. state=" + state)
 

@@ -179,4 +179,20 @@ class Console:
         templates = web.template.render('webvirt/templates/')
         return templates.console()
 
+class Upload:
+    def GET(self):
+        content = """<form method="POST" enctype="multipart/form-data" action="">
+        <input type="file" name="myfile" />
+        <br/>
+        <input type="submit" />
+        </form>"""
+        data = ""
+        return templates.index(content, data, web.cookies().get("session")
+    def POST(self):
+        x = web.input(myfile={})
+        eb.debug(x['myfile'].filename) # This is the filename
+        web.debug(x['myfile'].value) # This is the file contents
+        web.debug(x['myfile'].file.read()) # Or use a file(-like) object
+        raise web.seeother('/upload')
+                                        
 classes = globals()

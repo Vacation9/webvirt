@@ -1,2 +1,3 @@
-__all__ = ['urls']
+__all__ = ['urls', 'auth']
 import urls
+import auth

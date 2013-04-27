@@ -6,7 +6,7 @@ import common
 import config
 import libvirt
 from connection import conn
-from virt import Domain
+from virt import Domain,Host
 
 import web
 
@@ -27,6 +27,29 @@ class Index:
                 else:
                         data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
         return templates.index(content, data)
+
+class Host:
+     def GET(self):
+        cookies = web.cookies()
+        if cookies.get("session") == None:
+        web.seeother("http://www.tjhsst.edu/hackathon/login")
+        templates = web.template.render('webvirt/templates/')
+        host = Host()
+        content = ""
+        data = ""
+        for dom in conn.listAllDomains(0):
+               dom = Domain(dom)
+               if(dom.state == "Running."):
+                       data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
+               elif(dom.state == "Shut off."):
+                       data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF0000'>" + dom.state + "</div></a></li>"
+               else:
+                       data += "<li><a href='#'>" + dom.name + "<div class='pull-right'i style='color:#FF9900'>" + dom.state + "</div></a></li>"
+        return templates.index(content, data)
+
+
+class VM:
+
 
 class Auth:
     def GET(self):

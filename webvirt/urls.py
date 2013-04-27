@@ -65,7 +65,7 @@ class Console:
         templates = web.template.render('webvirt/templates/')
 	domObj = conn.lookupByName(web.input()['domain'])
 	streamObj = libvirt.virStream(conn)
-	streamObjStatus = domObj.openConsole(streamObj)
+	streamObjStatus = domObj.openConsole("pty0", streamObj, 0)
 	if streamObj == 0:
 	    return streamObj
 	elif streamObj == -1:

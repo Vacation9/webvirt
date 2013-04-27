@@ -1,7 +1,6 @@
 """
     WebVirt URL Handlers
 """
-import ajax
 import auth
 import common
 import config

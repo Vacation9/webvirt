@@ -66,7 +66,7 @@ class Console:
 	domObj = conn.lookupByName(web.input()['domain'])
 	streamObj = libvirt.virStream(conn)
 	streamObjStatus = domObj.openConsole("pty0", streamObj, 0)
-	if streamObj == 0:
+	if streamObjStatus == 0:
 	    return streamObj
 	elif streamObj == -1:
 	    return 'Error opening stream object'

@@ -1,7 +1,7 @@
 $def with (hostname, type, usedpct)
-$if $usedpct <= "40%":
+$if usedpct <= "40%":
     $bar = 'bar-success'
-$elif "70%" >= $usedpct > "40%":
+$elif "70%" >= usedpct > "40%":
     $bar = 'bar-warning'
 $else:
     $bar = 'bar-danger'

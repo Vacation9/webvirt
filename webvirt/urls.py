@@ -26,7 +26,7 @@ class Index:
 	content += '<div class="progress">\n'
 	content += '  <div class="bar bar-success" style="width: ' + str(perRunningVMs) + '%;"></div>\n'
 	content += '  <div class="bar bar-warning" style="width: ' + str(perSuspendVMs) + '%;"></div>\n'
-	content += '  <div class="bar bar-failure" style="width: ' + str(perShutoffVMs) + '%;"></div>\n'
+	content += '  <div class="bar bar-danger" style="width: ' + str(perShutoffVMs) + '%;"></div>\n'
 	content += '</div>\n'
         data = ""
         #vminfo = common.allinfo(conn.listAllDomains(0))

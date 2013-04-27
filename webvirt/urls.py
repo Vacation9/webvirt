@@ -23,9 +23,10 @@ class Auth:
         data = web.data()
         data = common.parse_post(data)
         try:
-            username = data['username']
-            password = data['password']
-            auth.authuser(username, password)
+            return str(data)
+            #username = data['username']
+            #password = data['password']
+            #auth.authuser(username, password)
         except Exception as e:
             return "Caught " + str(e) + " on login auth"
 

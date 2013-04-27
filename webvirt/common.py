@@ -42,7 +42,8 @@ def allinfo(doms):
 def pct_from_mem(memstats):
     free = memstats['free'] / memstats['total']
     import sys
-    sys.stderr.write(str(free) + '\n')
+    sys.stderr.write(str(memstats['free']) + '\n')
+    sys.stderr.write(str(memstats['total']) + '\n')
     free = round(free * 100)
     used = 100 - free
     return (free, used)

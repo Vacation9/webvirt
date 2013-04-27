@@ -110,6 +110,7 @@ class Create:
             else:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.create(content, data,form)
+
     def POST(self): 
         myform = web.form.Form( 
             web.form.Textbox("name",web.form.notnull),
@@ -146,6 +147,11 @@ class Auth:
                 web.seeother("http://www.tjhsst.edu/hackathon/login?failed=1")
         except Exception as e:
             return "Caught " + str(e) + " on login auth"
+
+class Logout:
+    def GET(self):
+        auth.destroy_session()
+        web.seeother("/hackathon/index/")
 
 class Login:
     def GET(self):

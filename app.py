@@ -7,6 +7,7 @@ urls = (
     '/auth', 'Auth',
     '/list', 'List',
     '/login', 'Login',
+    '/logout', 'Logout',
     '/console', 'Console',
     '/vm', 'VM',
     '/create', 'Create'

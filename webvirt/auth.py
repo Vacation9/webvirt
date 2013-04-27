@@ -8,15 +8,18 @@ def checkpw(username, password):
     pwdhash = hashlib.sha512(password).hexdigest()
     cur.execute('select * from users where username=? and password=?', (username, pwdhash))
     if cur.fetchone(): 
-    	return True
+        return True
     else:
-    	return False
+        return False
 
 def authuser(username, password):
     if checkpw(username, password):
         web.setcookie("session", username)
         return True
     return False
+
+def destroy_session():
+    web.setcookie('session', '', expires=-1)
 
 def verify_auth(redir=None):
     cookies = web.cookies()

@@ -74,7 +74,7 @@ class VM:
 	    elif data2[action] == 'resume':
 	        domObj.resumeVM()
 	    if data2[action] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
-	        content += '<h3>' + vm + ' ' +  action + (data2[action] == 'stop' ? 'p' : '') + 'ed.</h3>'
+	        content += '<h3>' + vm + ' ' +  action + ('p' if data[2] == 'stop' else '') + 'ed.</h3>'
         content += "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=start'' value='Start'>\
         <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=stop'' value='Stop'>\
         <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=destroy'' value='Destroy'>\

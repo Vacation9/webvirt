@@ -11,9 +11,7 @@ import web
 
 class Index:
     def GET(self):
-        cookies = web.cookies()
-        if cookies.get("session") == None:
-            web.seeother("http://www.tjhsst.edu/hackathon/login")
+        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         content = "This is some random text for testing."
         data = ""
@@ -28,10 +26,8 @@ class Index:
         return templates.index(content, data)
 
 class Host:
-    def GET(self):
-        cookies = web.cookies()
-        if cookies.get("session") == None:
-            web.seeother("http://www.tjhsst.edu/hackathon/login")
+    def GET(self): 
+        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         host = Host()
         content = ""
@@ -77,6 +73,7 @@ class Login:
 
 class List:
     def GET(self):
+        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         data = []
         for dom in conn.listDefinedDomains():
             data[dom] = Domain(dom)
@@ -84,6 +81,7 @@ class List:
 
 class Console:
     def GET(self):
+        auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         return templates.console()
 

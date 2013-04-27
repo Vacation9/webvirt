@@ -17,3 +17,12 @@ def authuser(username, password):
         web.setcookie("session", username)
         return True
     return False
+
+def verify_auth(redir=None):
+    cookies = web.cookies()
+    if cookies.get("session") == None:
+        if redir == None:
+            return False
+        web.seeother(redir)
+    else:
+        True

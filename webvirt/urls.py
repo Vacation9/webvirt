@@ -91,12 +91,12 @@ class Create:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         myform = web.form.Form( 
-            web.form.Textbox("name",web.form.notnull),
-            web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("hd",web.form.notnull),
-            web.form.Textbox("iso",web.form.notnull),
-            web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("name",web.form.notnull,description="Name of Virtual Machine: "),
+            web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Amount of Memory (in KiB): "),
+            web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Number of Virtual Processors: "),
+            web.form.Textbox("hd",web.form.notnull,description="Full Path to hard drive file (e.x /var/hackfiles/$name.qcow2): "),
+            web.form.Textbox("iso",web.form.notnull,description="Full Path to cdrom iso file (e.x /var/hackfiles/gentoo.iso): "),
+            web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="PTS number for serial console: "),
         )
         form = myform()
         data = ""
@@ -112,12 +112,12 @@ class Create:
         return templates.create(content, data,form,web.cookies().get("session"))
     def POST(self): 
         myform = web.form.Form( 
-            web.form.Textbox("name",web.form.notnull),
-            web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
-            web.form.Textbox("hd",web.form.notnull),
-            web.form.Textbox("iso",web.form.notnull),
-            web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit')),
+            web.form.Textbox("name",web.form.notnull,description="Name of Virtual Machine: "),
+            web.form.Textbox("mem",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Amount of Memory (in KiB): "),
+            web.form.Textbox("cpu",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="Number of Virtual Processors: :"),
+            web.form.Textbox("hd",web.form.notnull,description="Full Path to hard drive file (e.x /var/hackfiles/$name.qcow2): "),
+            web.form.Textbox("iso",web.form.notnull,description="Full Path to cdrom iso file (e.x /var/hackfiles/gentoo.iso): "),
+            web.form.Textbox("pts",web.form.notnull,web.form.regexp('\d+', 'Must be a digit'),description="PTS number for serial console: "),
         )
         form = myform() 
         if not form.validates(): 

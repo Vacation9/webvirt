@@ -43,7 +43,8 @@ class Host:
         host = Host()
         data = ""
         hs = virt.HostServer()
-        content = templates.host(hs.hostname, hs.hosttype, hs.memstats)
+        freemem, usedmem = common.pct_from_mem(hs.memstats)
+        content = templates.host(hs.hostname, hs.hosttype, freemem, usedmem)
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

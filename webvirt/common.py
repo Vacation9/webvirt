@@ -38,3 +38,9 @@ def allinfo(doms):
     for dom in doms:
         ret[dom.name] = (dom.get_dict())
     return ret
+
+def pct_from_mem(memstats):
+    free = memstats['free'] / memstats['total']
+    free = round(used * 100)
+    used = 100 - free
+    return (free, used)

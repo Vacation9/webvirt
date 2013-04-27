@@ -1,5 +1,10 @@
-$def with (hostname, type, memstats)
+$def with (hostname, type, freepct, usedpct)
 <h2>Host Information</h2>
-Hostname: $hostname <br />
-Host Type: $type <br />
-Memory Statistics: $memstats <br />
+<span class="hostinfo">Hostname: $hostname</span>
+<span class="hostinfo">Host Type: $type</span>
+<span class="hostinfo">Memory Statistics:
+    <div class="progress">
+        <div class="bar bar-danger" style="width: $usedpct%"></div>
+        <div class="bar bar-success" style="width: $freepct%"></div>
+    </div>
+</span>

@@ -192,7 +192,7 @@ class Upload:
 
     def POST(self):
         x = web.input(myfile={})
-        eb.debug(x['myfile'].filename) # This is the filename
+        web.debug(x['myfile'].filename) # This is the filename
         web.debug(x['myfile'].value) # This is the file contents
         web.debug(x['myfile'].file.read()) # Or use a file(-like) object
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')

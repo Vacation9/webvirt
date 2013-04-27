@@ -10,7 +10,7 @@ class Domain:
         self.state = common.getState(self.rawstate)
         self.memmax = dom.info()[1]
         self.memused = dom.info()[2]
-        self.mempct = round(100 * (float(self.memused) / self.memmax))
+        self.mempct = round(100 * (float(self.memused) / float(self.memmax)))
 
     def startVM(self):
         if self.rawstate != libvirt.VIR_DOMAIN_RUNNING:

@@ -51,7 +51,7 @@ class HostServer:
         self.memstats = conn.getMemoryStats(libvirt.VIR_NODE_MEMORY_STATS_ALL_CELLS,0)
         self.domains = [Domain(dom) for dom in conn.listAllDomains(0)]
 
-    def createDomain(self,name,mem,cpu,hd,iso,pts):
+    def createDomain(self,name,mem,cpu,hd,iso,vnc,pts):
         dom = conn.defineXML("""
               <domain type="kvm">
                    <name>%s</name>
@@ -75,14 +75,14 @@ class HostServer:
                            <source bridge="vbr1600"/>
                            <model type="virtio"/>
                        </interface>
-                       <graphics type="vnc" port="-1" autoport="yes"/>
+                       <graphics type="vnc" port="%s" autoport="no"/>
                        <console type='pty'>
                            <source path='/dev/pts/%s' />
                            <target type='serial' port='0' />
                        </console>
                     </devices>
                 </domain>
-                """ % (name,mem,cpu,hd,iso,pts))
+                """ % (name,mem,cpu,hd,iso,vnc,pts))
         self.domains.append(dom)
         return dom
 

@@ -31,6 +31,10 @@ class List:
     def GET(self):
         return conn.listDefinedDomains()
 
-
+class Console:
+    def GET(self):
+        templates = web.template.render('webvirt/templates/')
+	content = 'Not implemented'
+	return templates.index(content)
 
 classes = globals()

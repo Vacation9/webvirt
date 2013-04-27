@@ -6,6 +6,7 @@ urls = (
     '/', 'Index',
     '/auth', 'Auth',
     '/list', 'List',
+    '/login', 'Login',
         )
 
 if __name__ == '__main__':

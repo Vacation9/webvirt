@@ -20,6 +20,12 @@ class Auth:
     def POST(self):
         data = web.data()
         return str(data)
+
+class Login:
+    def GET(self):
+        templates = web.template.render('webvirt/templates/')
+        return templates.login()
+
 class List:
     def GET(self):
         return conn.listDefinedDomains()

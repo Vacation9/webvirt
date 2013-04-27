@@ -33,12 +33,12 @@ class Host:
         content = ""
         data = ""
 	hs = virt.HostServer(conn)
-	content += "Hostname: " + hs.hostname + "\n"
-	content += "Host type: " + hs.hosttype + "\n"
+	content += "Hostname: " + hs.hostname + "<br />"
+	content += "Host type: " + hs.hosttype + "<br />"
 	#content += "Host capabilities: " + hs.caps + "\n"
 	#content += "Host CPU Statistics: " + str(hs.cpustats) + "\n"
 	#content += "Host CPU Map: " + str(hs.cpumap) + "\n"
-	content += "Host Memory Statistics: " + str(hs.memstats) + "\n"
+	content += "Host Memory Statistics: " + str(hs.memstats) + "<br />"
 	#content += "Other Host Information: " + str(hs.info) + "\n"
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

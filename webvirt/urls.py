@@ -16,7 +16,7 @@ class Index:
         templates = web.template.render('webvirt/templates/')
         content = '<div id="stats"></div>\n'
         content += '<script type="text/javascript">\n'
-        content += 'populate_table();\n'
+        content += 'populate_table("stats");\n'
         content += '</script>'
         data = ""
         for dom in conn.listAllDomains(0):

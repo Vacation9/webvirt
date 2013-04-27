@@ -1,5 +1,6 @@
 import hashlib
 import web
+import sqlite3
 
 def checkpw(username, password):
     authdb = sqlite3.connect('users.db')

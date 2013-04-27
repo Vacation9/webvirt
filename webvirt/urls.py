@@ -35,11 +35,11 @@ class Host:
 	hs = virt.HostServer(conn)
 	content += "Hostname: " + hs.hostname + "\n"
 	content += "Host type: " + hs.hosttype + "\n"
-	content += "Host capabilities: " + hs.caps + "\n"
-	content += "Host CPU Statistics: " + str(hs.cpustats) + "\n"
-	content += "Host CPU Map: " + str(hs.cpumap) + "\n"
+	#content += "Host capabilities: " + hs.caps + "\n"
+	#content += "Host CPU Statistics: " + str(hs.cpustats) + "\n"
+	#content += "Host CPU Map: " + str(hs.cpumap) + "\n"
 	content += "Host Memory Statistics: " + str(hs.memstats) + "\n"
-	content += "Other Host Information: " + str(hs.info) + "\n"
+	#content += "Other Host Information: " + str(hs.info) + "\n"
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

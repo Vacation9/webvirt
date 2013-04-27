@@ -21,11 +21,13 @@ class Auth:
 
     def POST(self):
         data = web.data()
-        data = common.parsepost(data)
+        data = common.parse_post(data)
         try:
             username = data['username']
             password = data['password']
             auth.authuser(username, password)
+        except Exception as e:
+            return "Caught " + str(e) + " on login auth"
 
 class Login:
     def GET(self,failed):
@@ -38,7 +40,13 @@ class Login:
 
 class List:
     def GET(self):
-        return conn.listDefinedDomains()
+        data = ""
+        domains = conn.listDefinedDomains()
+        for dom in domains:
+            dom = conn.lookupByName(dom)
+            data += "name=" + dom.name() + "\n"
+            data += "state=" + helpers.getState(dom.state()[0]) + "\n"
+        return data
 
 class Console:
     def GET(self, domain):

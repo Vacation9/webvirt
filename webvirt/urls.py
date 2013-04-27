@@ -14,7 +14,7 @@ class Index:
     def GET(self):
         auth.verify_auth("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
-        content = "This is some random text for testing."
+        content = '<div onload="populateTable()" id="stats"></div>'
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)
@@ -93,7 +93,7 @@ class Create:
         if cookies.get("session") == None:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
-        content = '<div onload="populateTable()" id="stats"></div>'
+        content = ""
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

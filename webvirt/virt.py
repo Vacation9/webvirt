@@ -18,5 +18,17 @@ class HostServer:
         self.cpumap = conn.getCPUMap(0)
         self.info = conn.getInfo()
         self.memstats = conn.getMemoryStats(libvirt.VIR_NODE_MEMORY_STATS_ALL_CELLS,0)
-    def createDomain(self):
-        return 'bob'
+        self.domains = [Domain(dom) for dom in conn.listDefinedDomains()]
+
+    def createDomain(self,name):
+        dom = conn.defineXML(
+                """<domain type='kvm'>
+                <name>%s</name>
+                <memory>512</memory>
+                <os>
+                <type>hvm</type>
+                </os>
+                </domain>""" % (name)
+                )
+        self.domains.append(dom)
+        return dom

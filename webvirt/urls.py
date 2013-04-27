@@ -4,7 +4,6 @@
 import auth
 import common
 import config
-import helpers
 from conn import conn
 
 import web

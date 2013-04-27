@@ -8,8 +8,8 @@ import web
 class Index:
     def GET(self):
         import os
-        return os.listdir(".")
-        #templates = web.template.render('templates/')
+        templates = web.template.render('webvirt/templates/')
+        return os.listdir("webvirt/templates")
 
 class Auth:
     def GET(self):

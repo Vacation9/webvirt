@@ -139,7 +139,7 @@ class Create:
              form.Textbox("hd",form.notnull),
              form.Textbox("iso",form.notnull),
              form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
-         ) 
+        )
         form = myform() 
         if not form.validates(): 
             return render.formtest(form)

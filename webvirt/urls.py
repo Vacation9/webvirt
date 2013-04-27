@@ -62,7 +62,7 @@ class VM:
         content = ""
         data = ""
         for dom in conn.listAllDomains(0):
-            dom = Domain(dom)
+            dom = virt.Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'i style='color:#00FF00'>" + dom.state + "</div></a></li>"
             elif(dom.rawstate == libvirt.VIR_DOMAIN_SHUTOFF):

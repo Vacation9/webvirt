@@ -36,17 +36,41 @@ class HostServer:
         self.memstats = conn.getMemoryStats(libvirt.VIR_NODE_MEMORY_STATS_ALL_CELLS,0)
         self.domains = [Domain(dom) for dom in conn.listAllDomains(0)]
 
-    def createDomain(self,name):
-        dom = conn.defineXML(
-                """<domain type='kvm'>
-                <name>%s</name>
-                <memory>512</memory>
-                <os>
-                <type>hvm</type>
-                </os>
-                </domain>""" % (name)
-                )
-        self.domains.append(dom)
-        return dom
+        def createDomain(self,name,mem,cpu,hd,iso,pts):
+                dom = conn.defineXML("""
+               <domain type="kvm">
+                   <name>%s</name>
+                   <memory>%d</memory>
+                   <vcpu>%d</vcpu>
+                   <os>
+                        <type arch="x86_64">hvm</type>
+                        <boot dev="cdrom"/>
+                   </os>
+                   <devices>
+                       <disk type="block" device="disk">
+                            <source dev="%s"/>
+                            <target dev="hda" bus="virtio"/>
+                       </disk>
+                       <disk type='file' device='cdrom'>
+                            <!--<driver name='qemu' type='raw'/>-->
+                            <source file='%s'/>
+                            <target dev='hdc' bus='ide' tray='closed'/>
+                            <readonly/>
+                       </disk>
+                       <interface type="bridge">
+                           <source bridge="vbr1600"/>
+                           <model type="virtio"/>
+                       </interface>
+                       <graphics type="vnc" port="-1" autoport="yes"/>
+                       <console type='pty'>
+                           <source path='/dev/pts/%d' />
+                           <target type='serial' port='0' />
+                       </console>
+                    </devices>
+                </domain>
+                """ % (name,mem,cpu,hd,iso,pts)
+        )
+         self.domains.append(dom)
+                return dom
 
-    
+

@@ -133,7 +133,7 @@ class Create:
         )
         form = myform() 
         if not form.validates(): 
-            return templates.render.formtest(form)
+            return web.template.render.formtest(form)
         else:
             hs = virt.HostServer()
             hs.createDomain(form['name'].value, form['mem'].value, form['cpu'].value, form['hd'].value, form['iso'].value, form['pts'].value)

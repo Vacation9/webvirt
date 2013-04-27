@@ -132,13 +132,13 @@ class Create:
                 data += "<li><a href='/hackathon/vm?vm=" + dom.name + "'>" + dom.name + "<div class='pull-right'><span class='label label-warning'>" + dom.state + "</span></div></a></li>"
         return templates.create(content, data,form)
     def POST(self): 
-         myform = form.Form( 
-             form.Textbox("name",form.notnull),
-             form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
-             form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
-             form.Textbox("hd",form.notnull),
-             form.Textbox("iso",form.notnull),
-             form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
+        myform = form.Form( 
+            form.Textbox("name",form.notnull),
+            form.Textbox("mem",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            form.Textbox("cpu",form.notnull,form.regexp('\d+', 'Must be a digit')),
+            form.Textbox("hd",form.notnull),
+            form.Textbox("iso",form.notnull),
+            form.Textbox("pts",form.notnull,form.regexp('\d+', 'Must be a digit')),
         )
         form = myform() 
         if not form.validates(): 

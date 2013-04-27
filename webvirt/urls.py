@@ -27,7 +27,7 @@ class Auth:
             password = data['password']
             auth.authuser(username, password)
         except Exception as e:
-            return "Caught " + e + " on login auth"
+            return "Caught " + str(e) + " on login auth"
 
 class Login:
     def GET(self):

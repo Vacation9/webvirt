@@ -71,8 +71,9 @@ class HostServer:
                             <target dev='hdc' bus='ide' tray='closed'/>
                             <readonly/>
                        </disk>
-                       <interface type="bridge">
-                           <source bridge="vbr1600"/>
+                       <interface type="bridge" >
+		           <mac address="02:00:c6:26:13:19"/>
+                           <source bridge="vbr1900"/>
                            <model type="virtio"/>
                        </interface>
                        <graphics type="vnc" port="%s" autoport="no"/>

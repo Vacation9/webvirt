@@ -10,7 +10,6 @@ urls = (
     '/console', 'Console',
     '/host', 'Host',
     '/vm', 'VM',
-    '/ajax/(.*)', 'Ajax',
     '/create', 'Create'
         )
 

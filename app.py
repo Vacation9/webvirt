@@ -10,7 +10,8 @@ urls = (
     '/logout', 'Logout',
     '/console', 'Console',
     '/vm', 'VM',
-    '/create', 'Create'
+    '/create', 'Create',
+    '/upload', 'Upload'
         )
 
 if __name__ == '__main__':

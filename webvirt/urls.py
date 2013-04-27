@@ -10,7 +10,7 @@ from connection import conn
 import virt
 import web
 import os
-import pymagic
+from pymagic import magic
 
 class Index:
     def GET(self):
@@ -185,6 +185,9 @@ class Console:
 
 class Upload:
     def GET(self):
+        params = web.input()
+	if 'bad' in params.keys() and int(params['bad']) == 1:
+	    return "<div class=\"alert\"><strong><strong>Error!</strong>Your uploaded file was not an ISO file.</strong></div>"
         content = """
         <h2>Upload CDROM/DVDROM ISO file</h2>
         <form method="POST" enctype="multipart/form-data" action="">
@@ -205,6 +208,9 @@ class Upload:
              fout = open(filedir +'/'+ filename,'w') # creates the file where the uploaded file should be stored
              fout.write(x.myfile.file.read()) # writes the uploaded file to the newly created file.
              fout.close() # closes the file, upload complete.
+	     if magic.from_file(filedir + filename, mime=True) != "application/octet-stream":
+	         os.remove(filedir + filename)
+		 raise web.seeother('http://www.tjhsst.edu/hackathon/upload?bad=1')
         raise web.seeother('http://www.tjhsst.edu/hackathon/upload')
 
 class HD:

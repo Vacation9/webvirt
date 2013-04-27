@@ -21,7 +21,7 @@ class Index:
         domains = conn.listDefinedDomains()
         for dom in domains:
                 dom = conn.lookupByName(dom)
-                data += "<li><a href='#'>" + dom.name() + "\t" + common.getState(dom.state(0)[0]) + "</a></li>"
+                data += "<li><a href='#'>" + dom.name() + "<p class='pull-right'>" + common.getState(dom.state(0)[0]) + "</p></a></li>"
         return templates.index(content, data)
 
 class Auth:

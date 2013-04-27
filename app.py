@@ -8,7 +8,6 @@ urls = (
     '/list', 'List',
     '/login', 'Login',
     '/console', 'Console',
-    '/host', 'Host',
     '/vm', 'VM',
     '/create', 'Create'
         )

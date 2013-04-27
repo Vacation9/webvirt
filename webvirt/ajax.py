@@ -20,7 +20,6 @@ class AjaxHandler:
             self.handlers[path] = func
 
 def vminfo(path, params):
-    params = list(filter(lamdba x: x != '', params))
     print params
     hs = virt.HostServer()
     if len(params) < 0:

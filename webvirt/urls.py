@@ -97,7 +97,7 @@ class Create:
         if cookies.get("session") == None:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
-        content = ""
+        content = '<div onload="populateTable()" id="stats"></div>'
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

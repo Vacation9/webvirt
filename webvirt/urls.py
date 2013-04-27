@@ -12,6 +12,7 @@ import web
 import os
 from pymagic import magic
 import subprocess
+import sys
 
 class Index:
     def GET(self):

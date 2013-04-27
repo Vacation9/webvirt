@@ -272,7 +272,10 @@ class ListHD:
                 if "virtual size" in line:
                     sizes.append(line.split(' ')[2])
         pack = zip(files, sizes)
-        contents = str(templates.listhd(pack))
+        contents='<table class="table"><tr><td>Name</td><td>Size</td></tr>'
+        for f, size in pack:
+            contents += "<tr><td>%s</td><td>%s</td></tr>" % (f, size)
+        contends += "</table>"
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

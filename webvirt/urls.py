@@ -161,6 +161,7 @@ class Ajax:
         components = path.split('/')
         ajax_handler = ajax.AjaxHandler()
         ajax_handler.add_handler(ajax.vminfo, 'vminfo')
+        ajax_handler.add_handler(ajax.listvms, 'listvms')
         ret = ajax_handler.handle(components)
         if ret:
             return ret

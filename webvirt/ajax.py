@@ -37,3 +37,10 @@ def vminfo(path, params):
             return json.dumps(info)
     web.ctx.status = "404 Not Found"
     return "{}"
+
+def listvms(path, params):
+    hs = virt.HostServer()
+    vlist = []
+    for dom in hs.domains:
+        vlist.append(dom.name)
+    return json.dumps({'vms': vlist})

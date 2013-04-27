@@ -8,7 +8,7 @@ import web
 class Index:
     def GET(self):
         templates = web.template.render('templates/')
-        return templates.index()
+        return str(dir(templates))
 
 class Auth:
     def GET(self):

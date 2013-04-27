@@ -27,7 +27,13 @@ class Auth:
         try:
             username = data['username']
             password = data['password']
-            auth.authuser(username, password)
+            if auth.authuser(username, password):
+                if 'redirect' in data:
+                    web.seeother(data['redirect'])
+                else:
+                    web.seeother("http://www.tjhsst.edu/hackathon/")
+            else:
+                web.seeother("http://www.tjhsst.edu/hackathon/login?failed=1")
         except Exception as e:
             return "Caught " + str(e) + " on login auth"
 

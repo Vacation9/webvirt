@@ -8,10 +8,10 @@ class Domain:
         self.rawstate = self.dom.state(0)[0]
         self.state = common.getState(self.rawstate)
 
-class Host:
-    def __init__(self):
+class HostServer:
+    def __init__(self, conn):
         self.hostname = conn.getHostname()
-        self.type = conn.getType()
+        self.hosttype = conn.getType()
         self.caps = conn.getCapabilites()
         self.cpustats = conn.getCPUStats(libvirt.VIR_NODE_CPU_STATS_ALL_CPUS,0)
         self.cpumap = conn.getCPUMap(0)

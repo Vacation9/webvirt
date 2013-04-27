@@ -6,7 +6,7 @@ import common
 import config
 import libvirt
 from connection import conn
-from virt import Domain,Host
+from virt import Domain,HostServer
 import web
 
 class Index:
@@ -36,6 +36,14 @@ class Host:
         host = Host()
         content = ""
         data = ""
+	hs = virt.HostServer(conn)
+	content += "Hostname: " + hs.hostname + "\n"
+	content += "Host type: " + hs.hosttype + "\n"
+	content += "Host capabilities: " + hs.caps + "\n"
+	content += "Host CPU Statistics: " + hs.cpustats + "\n"
+	content += "Host CPU Map: " + hs.cpumap + "\n"
+	content += "Host Memory Statistics: " + hs.memstats + "\n"
+	content += "Other Host Information: " + hs.info + "\n"
         for dom in conn.listAllDomains(0):
             dom = Domain(dom)
             if(dom.rawstate == libvirt.VIR_DOMAIN_RUNNING):

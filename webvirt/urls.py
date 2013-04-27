@@ -82,7 +82,7 @@ class VM:
         #mempct = str(vmdict['mempct']) + '%'
         #content += str(templates.vmmemory(mempct))
 	content += "<br />"
-        content += "<a href='http://www.tjhsst.edu/novnc/vnc.html?host=www.tjhsst.edu&port=6080'>Launch Display Connection</a>"  
+        content += "<button class=\"btn\"><a href='http://www.tjhsst.edu/novnc/vnc.html?host=www.tjhsst.edu&port=6080'>Launch Display Connection</a></button>"  
         data = ""
         for dom in conn.listAllDomains(0):
             dom = virt.Domain(dom)

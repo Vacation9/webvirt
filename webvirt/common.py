@@ -34,6 +34,12 @@ def getState(state):
     else:
         raise Exception("This should never happen. state=" + state)
 
+def getVNC(xml):
+    ctxt = xml.xpathNewContext()
+    res = ctxt.xpathEval("domain/devices/graphics[@type='vnc']/@port")
+    print(res)
+
+
 def allinfo(doms):
     ret = {}
     for dom in doms:

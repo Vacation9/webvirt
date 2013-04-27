@@ -59,8 +59,23 @@ class VM:
             web.seeother("http://www.tjhsst.edu/hackathon/login")
         templates = web.template.render('webvirt/templates/')
         data2 = web.input()
+	content = ""
         vm = data2['vm']
-        content = "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=start'' value='Start'>\
+	domObj = virt.Domain(conn.lookupByName(vm))
+	if 'action' in data2.keys():
+	    if data2[action] == 'start':
+	        domObj.startVM()
+	    elif data2[action] == 'stop':
+	        domObj.stopVM()
+	    elif data2[action] == 'destroy':
+	        domObj.destroyVM()
+	    elif data2[action] == 'suspend':
+	        domObj.suspendVM()
+	    elif data2[action] == 'resume':
+	        domObj.resumeVM()
+	    if data2[action] in ['start', 'stop', 'destroy', 'suspend', 'resume']:
+	        content += '<h3>' + vm + ' ' +  action + (data2[action] == 'stop' ? 'p' : '') + 'ed.</h3>'
+        content += "<input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=start'' value='Start'>\
         <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=stop'' value='Stop'>\
         <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=destroy'' value='Destroy'>\
         <br><input type=button onClick='location.href='/hackathon/vm?vm='" + vm + "'&action=suspend'' value='Suspend'>\

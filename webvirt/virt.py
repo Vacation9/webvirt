@@ -66,7 +66,7 @@ class HostServer:
                        </interface>
                        <graphics type="vnc" port="-1" autoport="yes"/>
                        <console type='pty'>
-                           <source path='/dev/pts/%d' />
+                           <source path='/dev/pts/%s' />
                            <target type='serial' port='0' />
                        </console>
                     </devices>

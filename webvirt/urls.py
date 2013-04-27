@@ -4,6 +4,7 @@
 import auth
 import common
 import config
+import libvirt
 from conn import conn
 
 import web
@@ -60,7 +61,7 @@ class Console:
     def GET(self):
         templates = web.template.render('webvirt/templates/')
 	domObj = conn.lookupByName(web.input()['domain'])
-	streamObj = conn.streamNew()
+	streamObj = libvirt.virStreamNew()
 	streamObjStatus = domObj.openConsole(streamObj)
 	if streamObj == 0:
 	    return streamObj

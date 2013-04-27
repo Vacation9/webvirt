@@ -186,7 +186,7 @@ class Console:
 class Upload:
     def GET(self):
         content = """
-        <h2>Upload ISO file to /var/hackfiles/ - for use in creating a new VM</h2>
+        <h2>Upload CDROM/DVDROM ISO file</h2>
         <form method="POST" enctype="multipart/form-data" action="">
         <input type="file" name="myfile" />
         <br/>

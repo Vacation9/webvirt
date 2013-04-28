@@ -1,5 +1,4 @@
-Project WebVirt
-HackTJ - Michael, David, Peter, James, Jacob
+Project WebVirt -  Michael, David, Peter, James, Jacob
 ---------------------------------------------
-Description
 Web Interface for libvirt controlled virtualization
+Written for HackTJ. Now under development for production usage.
